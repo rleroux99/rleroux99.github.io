@@ -1,0 +1,1594 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portafolio Ciberseguridad | Red & Blue Team</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+  <!-- Font Awesome para iconografía técnica -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            cyber: {
+              bg: '#0a0e17',
+              card: '#0f1624',
+              border: '#1e293b',
+              mint: '#00f5d4',
+              cyan: '#00bbff',
+              red: '#ff3b5c',
+              amber: '#ffb703',
+            }
+          },
+          boxShadow: {
+            'neon-mint': '0 0 20px rgba(0, 245, 212, 0.25)',
+            'neon-cyan': '0 0 20px rgba(0, 187, 255, 0.25)',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Estilos base y efectos visuales de terminal / matriz */
+    body {
+      background-color: #0a0e17;
+      color: #e2e8f0;
+      overflow-x: hidden;
+    }
+
+    /* Fondo sutil de cuadrícula táctica */
+    .cyber-grid {
+      background-size: 40px 40px;
+      background-image: 
+        linear-gradient(to right, rgba(0, 245, 212, 0.04) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(0, 187, 255, 0.04) 1px, transparent 1px);
+    }
+
+    /* Cursor parpadeante de terminal */
+    .cursor-blink {
+      animation: blink 1s step-end infinite;
+    }
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    /* Animaciones suaves de aparición al hacer scroll */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Scrollbar personalizado estilo consola */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0a0e17;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1e293b;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #00f5d4;
+    }
+  </style>
+</head>
+<body class="font-sans antialiased cyber-grid selection:bg-cyber-mint selection:text-cyber-bg">
+
+  <!-- Toast / Notificación flotante (Reemplaza cualquier alert) -->
+  <div id="toast-container" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 pointer-events-none"></div>
+
+  <!-- =========================================================
+       1. BARRA DE NAVEGACIÓN FIJA
+  ========================================================== -->
+  <header class="fixed top-0 left-0 right-0 z-40 bg-cyber-bg/85 backdrop-blur-md border-b border-cyber-border/80">
+    <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <!-- Logo / Identificador -->
+      <a href="#inicio" class="flex items-center gap-2.5 group">
+        <div class="w-9 h-9 rounded-lg bg-cyber-card border border-cyber-mint/40 flex items-center justify-center text-cyber-mint group-hover:shadow-neon-mint transition-all">
+          <i class="fa-solid fa-shield-halved text-sm"></i>
+        </div>
+        <span class="font-mono font-bold text-sm sm:text-base tracking-tight text-white">
+          <span class="text-cyber-mint">root@</span><span id="nav-handle">rleroux</span><span class="text-cyber-cyan">:~#</span>
+        </span>
+      </a>
+
+      <!-- Enlaces de navegación Escritorio -->
+      <div class="hidden lg:flex items-center gap-6 text-sm font-medium text-slate-300">
+        <a href="#inicio" class="hover:text-cyber-mint transition-colors">Inicio</a>
+        <a href="#perfil" class="hover:text-cyber-mint transition-colors">Perfil</a>
+        <a href="#habilidades" class="hover:text-cyber-mint transition-colors">Habilidades</a>
+        <a href="#proyectos" class="hover:text-cyber-mint transition-colors">Laboratorios/Proyectos</a>
+        <a href="#trayectoria" class="hover:text-cyber-mint transition-colors">Certificaciones & Academia</a>
+        <a href="#terminal-interactiva" class="hover:text-cyber-cyan transition-colors font-mono text-xs px-2.5 py-1 rounded-md bg-cyber-cyan/10 border border-cyber-cyan/30">
+          &gt;_ Consola
+        </a>
+        <a href="#contacto" class="hover:text-cyber-mint transition-colors">Contacto</a>
+      </div>
+
+      <!-- Botón Editar Perfil + Menú Móvil -->
+      <div class="flex items-center gap-2">
+        <button id="btn-open-editor" type="button" class="px-3 py-1.5 rounded-lg bg-cyber-card hover:bg-slate-800 border border-cyber-mint/40 text-cyber-mint font-mono text-xs flex items-center gap-1.5 transition-all shadow-sm hover:shadow-neon-mint" title="Personalizar datos del portafolio en vivo">
+          <i class="fa-solid fa-user-pen"></i>
+          <span class="hidden sm:inline">Editar Perfil</span>
+        </button>
+
+        <button id="mobile-menu-btn" type="button" aria-label="Abrir menú" class="lg:hidden p-2.5 rounded-lg text-slate-300 hover:text-cyber-mint hover:bg-cyber-card border border-transparent hover:border-cyber-border">
+          <i class="fa-solid fa-bars text-lg"></i>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Menú Móvil Desplegable -->
+    <div id="mobile-menu" class="hidden lg:hidden bg-cyber-card/95 backdrop-blur-lg border-b border-cyber-border px-4 pt-2 pb-5 space-y-2">
+      <a href="#inicio" class="mobile-link block px-3 py-2.5 rounded-lg text-sm font-medium text-slate-200 hover:bg-cyber-bg hover:text-cyber-mint">Inicio</a>
+      <a href="#perfil" class="mobile-link block px-3 py-2.5 rounded-lg text-sm font-medium text-slate-200 hover:bg-cyber-bg hover:text-cyber-mint">Perfil & Enfoque</a>
+      <a href="#habilidades" class="mobile-link block px-3 py-2.5 rounded-lg text-sm font-medium text-slate-200 hover:bg-cyber-bg hover:text-cyber-mint">Habilidades Técnicas</a>
+      <a href="#proyectos" class="mobile-link block px-3 py-2.5 rounded-lg text-sm font-medium text-slate-200 hover:bg-cyber-bg hover:text-cyber-mint">Laboratorios & Proyectos</a>
+      <a href="#trayectoria" class="mobile-link block px-3 py-2.5 rounded-lg text-sm font-medium text-slate-200 hover:bg-cyber-bg hover:text-cyber-mint">Certificaciones & Academia</a>
+      <a href="#terminal-interactiva" class="mobile-link block px-3 py-2.5 rounded-lg text-sm font-mono text-cyber-cyan hover:bg-cyber-bg">&gt;_ Terminal Interactiva</a>
+      <a href="#contacto" class="mobile-link block px-3 py-2.5 rounded-lg text-sm font-medium text-slate-200 hover:bg-cyber-bg hover:text-cyber-mint">Contacto</a>
+    </div>
+  </header>
+
+  <main class="pt-16">
+    <!-- =========================================================
+         2. SECCIÓN HERO
+    ========================================================== -->
+    <section id="inicio" class="relative min-h-[90vh] flex items-center py-16 sm:py-24 overflow-hidden">
+      <!-- Resplandores ambientales -->
+      <div class="absolute top-20 -left-24 w-72 h-72 bg-cyber-mint/10 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="absolute bottom-10 -right-24 w-80 h-80 bg-cyber-cyan/10 rounded-full blur-3xl pointer-events-none"></div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+          
+          <!-- Columna Izquierda: Identidad y CTA -->
+          <div class="lg:col-span-7 space-y-6">
+            <!-- Badge de estado + Typewriter -->
+            <div class="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-cyber-card border border-cyber-mint/30 text-xs font-mono text-cyber-mint">
+              <span class="w-2 h-2 rounded-full bg-cyber-mint animate-ping"></span>
+              <span id="hero-typewriter"></span><span class="cursor-blink font-bold">_</span>
+            </div>
+
+            <div class="space-y-3">
+              <p class="font-mono text-sm sm:text-base text-cyber-cyan tracking-wide">
+                // HOLA, SOY
+              </p>
+              <h1 id="profile-name" class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-tight">
+                ING Renato A. Leroux C.
+              </h1>
+              <h2 id="profile-role" class="text-xl sm:text-2xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-cyber-mint via-cyber-cyan to-sky-400">
+                Especialista en Ciberseguridad | Desarrollo Seguro (Secure by Design) & Docencia Tecnológica
+              </h2>
+            </div>
+
+            <p id="profile-bio" class="text-slate-400 text-base sm:text-lg max-w-2xl leading-relaxed">
+              Protejo infraestructuras críticas, aplicaciones web y bases de datos combinando mentalidad ofensiva (<span class="text-cyber-red font-mono text-sm">Red Team</span>) con arquitectura resiliente (<span class="text-cyber-cyan font-mono text-sm">Blue Team</span>). Apasionado por la auditoría de sistemas, mitigación de vulnerabilidades OWASP y formación técnica de alto impacto.
+            </p>
+
+            <!-- Botones de Acción -->
+            <div class="flex flex-wrap items-center gap-3.5 pt-2">
+              <a href="#proyectos" class="px-6 py-3.5 rounded-xl bg-gradient-to-r from-cyber-mint to-cyber-cyan text-cyber-bg font-bold text-sm sm:text-base flex items-center gap-2 hover:opacity-95 transition-all shadow-neon-mint">
+                <i class="fa-solid fa-flask"></i>
+                <span>Ver Proyectos & Labs</span>
+              </a>
+
+              <button id="btn-download-cv" type="button" class="px-5 py-3.5 rounded-xl bg-cyber-card hover:bg-slate-800 border border-cyber-border hover:border-cyber-mint/50 text-white font-semibold text-sm sm:text-base flex items-center gap-2 transition-all">
+                <i class="fa-solid fa-file-shield text-cyber-mint"></i>
+                <span>Descargar CV</span>
+              </button>
+
+              <!-- Enlaces Sociales -->
+              <div class="flex items-center gap-2.5 ml-0 sm:ml-2">
+                <a id="link-github" href="https://github.com" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="p-3.5 rounded-xl bg-cyber-card border border-cyber-border hover:border-cyber-mint text-slate-300 hover:text-cyber-mint transition-all">
+                  <i class="fa-brands fa-github text-lg"></i>
+                </a>
+                <a id="link-linkedin" href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="p-3.5 rounded-xl bg-cyber-card border border-cyber-border hover:border-cyber-cyan text-slate-300 hover:text-cyber-cyan transition-all">
+                  <i class="fa-brands fa-linkedin-in text-lg"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Columna Derecha: Tarjeta Terminal de Estado del Sistema -->
+          <div class="lg:col-span-5">
+            <div class="rounded-2xl bg-cyber-card/90 border border-cyber-border shadow-2xl overflow-hidden backdrop-blur-sm">
+              <!-- Barra superior ventana -->
+              <div class="px-4 py-3 bg-slate-900/90 border-b border-cyber-border flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                  <span class="w-3 h-3 rounded-full bg-rose-500"></span>
+                  <span class="w-3 h-3 rounded-full bg-amber-400"></span>
+                  <span class="w-3 h-3 rounded-full bg-emerald-400"></span>
+                </div>
+                <span class="font-mono text-xs text-slate-400">sec-audit-status.sh</span>
+                <span class="text-xs font-mono text-cyber-mint">TLS 1.3</span>
+              </div>
+
+              <!-- Contenido de diagnóstico -->
+              <div class="p-5 sm:p-6 font-mono text-xs sm:text-sm space-y-3.5 text-slate-300">
+                <div class="flex items-center justify-between border-b border-cyber-border/60 pb-2.5">
+                  <span class="text-slate-400">$ status --security-posture</span>
+                  <span class="px-2 py-0.5 rounded bg-emerald-500/15 text-emerald-400 text-xs">HARDENED</span>
+                </div>
+
+                <div class="space-y-2">
+                  <div class="flex justify-between">
+                    <span class="text-cyber-cyan">[+] Enfoque Principal:</span>
+                    <span class="text-white text-right">AppSec & Infraestructura</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span class="text-cyber-cyan">[+] Metodologías:</span>
+                    <span class="text-white text-right">OWASP, PTES, NIST CSF</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span class="text-cyber-cyan">[+] Entornos Base:</span>
+                    <span class="text-white text-right">Kali / Parrot / Debian</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span class="text-cyber-cyan">[+] Ubicación:</span>
+                    <span id="profile-location" class="text-white text-right">Remoto / LATAM</span>
+                  </div>
+                </div>
+
+                <!-- Mini visualizador de vectores -->
+                <div class="pt-2">
+                  <div class="text-xs text-slate-400 mb-2">Cobertura Red Team vs Blue Team:</div>
+                  <div class="w-full h-3 rounded-full bg-slate-800 overflow-hidden flex">
+                    <div class="bg-cyber-red h-full" style="width: 48%" title="Red Team / Ofensiva 48%"></div>
+                    <div class="bg-cyber-cyan h-full" style="width: 52%" title="Blue Team / Defensiva 52%"></div>
+                  </div>
+                  <div class="flex justify-between text-[11px] mt-1.5">
+                    <span class="text-cyber-red"><i class="fa-solid fa-crosshairs mr-1"></i>Ofensiva (48%)</span>
+                    <span class="text-cyber-cyan"><i class="fa-solid fa-shield mr-1"></i>Defensiva & DevSecOps (52%)</span>
+                  </div>
+                </div>
+
+                <div class="pt-2 border-t border-cyber-border/60 text-xs text-slate-400 flex items-center justify-between">
+                  <span>Prueba la consola interactiva abajo</span>
+                  <a href="#terminal-interactiva" class="text-cyber-mint hover:underline">Ejecutar &rarr;</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         3. SECCIÓN SOBRE MÍ & ENFOQUE + MÉTRICAS
+    ========================================================== -->
+    <section id="perfil" class="py-20 border-t border-cyber-border/60 reveal">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="mb-12">
+          <span class="font-mono text-xs uppercase tracking-widest text-cyber-mint">01 // PERFIL PROFESIONAL</span>
+          <h2 class="text-3xl sm:text-4xl font-bold text-white mt-1">Seguridad Integral: Ofensiva, Defensiva y Cultura</h2>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          <!-- Pilares de trabajo -->
+          <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-5">
+            <div class="p-6 rounded-2xl bg-cyber-card border border-cyber-border hover:border-cyber-red/50 transition-all group">
+              <div class="w-11 h-11 rounded-xl bg-cyber-red/10 border border-cyber-red/30 flex items-center justify-center text-cyber-red mb-4 group-hover:scale-105 transition-transform">
+                <i class="fa-solid fa-bug text-lg"></i>
+              </div>
+              <h3 class="text-lg font-bold text-white mb-2">Seguridad Ofensiva & Pentesting</h3>
+              <p class="text-sm text-slate-400 leading-relaxed">
+                Evaluación controlada de superficies de ataque, pruebas de penetración web (OWASP Top 10), enumeración de servicios y explotación ética para descubrir fallos antes que los adversarios.
+              </p>
+            </div>
+
+            <div class="p-6 rounded-2xl bg-cyber-card border border-cyber-border hover:border-cyber-cyan/50 transition-all group">
+              <div class="w-11 h-11 rounded-xl bg-cyber-cyan/10 border border-cyber-cyan/30 flex items-center justify-center text-cyber-cyan mb-4 group-hover:scale-105 transition-transform">
+                <i class="fa-solid fa-radar text-lg"></i>
+              </div>
+              <h3 class="text-lg font-bold text-white mb-2">Blue Team & Hardening</h3>
+              <p class="text-sm text-slate-400 leading-relaxed">
+                Fortalecimiento de servidores Linux/Windows, segmentación de red, inspección profunda de paquetes, gestión de reglas de firewall y planes de respaldo con integridad verificada.
+              </p>
+            </div>
+
+            <div class="p-6 rounded-2xl bg-cyber-card border border-cyber-border hover:border-cyber-mint/50 transition-all group">
+              <div class="w-11 h-11 rounded-xl bg-cyber-mint/10 border border-cyber-mint/30 flex items-center justify-center text-cyber-mint mb-4 group-hover:scale-105 transition-transform">
+                <i class="fa-solid fa-code-branch text-lg"></i>
+              </div>
+              <h3 class="text-lg font-bold text-white mb-2">Arquitectura Secure by Design</h3>
+              <p class="text-sm text-slate-400 leading-relaxed">
+                Integración de controles de seguridad desde la fase de diseño del software: consultas parametrizadas, control de acceso basado en roles (RBAC) y sanitización estricta de entradas.
+              </p>
+            </div>
+
+            <div class="p-6 rounded-2xl bg-cyber-card border border-cyber-border hover:border-amber-400/50 transition-all group">
+              <div class="w-11 h-11 rounded-xl bg-amber-400/10 border border-amber-400/30 flex items-center justify-center text-amber-400 mb-4 group-hover:scale-105 transition-transform">
+                <i class="fa-solid fa-chalkboard-user text-lg"></i>
+              </div>
+              <h3 class="text-lg font-bold text-white mb-2">Docencia & Concienciación</h3>
+              <p class="text-sm text-slate-400 leading-relaxed">
+                Formación técnica práctica en laboratorios controlados, talleres de higiene digital, prevención de ingeniería social y capacitación a equipos de desarrollo.
+              </p>
+            </div>
+          </div>
+
+          <!-- Panel de Métricas Clave -->
+          <div class="lg:col-span-5 rounded-2xl bg-gradient-to-b from-cyber-card to-slate-900/90 border border-cyber-border p-6 sm:p-8 space-y-6">
+            <div class="flex items-center justify-between">
+              <h3 class="font-mono text-sm font-semibold text-cyber-mint uppercase tracking-wider">
+                // Métricas de Impacto
+              </h3>
+              <i class="fa-solid fa-chart-line text-cyber-cyan"></i>
+            </div>
+
+            <div class="grid grid-cols-2 gap-4">
+              <div class="p-4 rounded-xl bg-cyber-bg/80 border border-cyber-border">
+                <div class="text-3xl font-extrabold text-white font-mono">35+</div>
+                <div class="text-xs text-slate-400 mt-1">Auditorías & Evaluaciones de Seguridad</div>
+              </div>
+              <div class="p-4 rounded-xl bg-cyber-bg/80 border border-cyber-border">
+                <div class="text-3xl font-extrabold text-cyber-mint font-mono">24</div>
+                <div class="text-xs text-slate-400 mt-1">Laboratorios Técnicos Desplegados</div>
+              </div>
+              <div class="p-4 rounded-xl bg-cyber-bg/80 border border-cyber-border">
+                <div class="text-3xl font-extrabold text-cyber-cyan font-mono">40+</div>
+                <div class="text-xs text-slate-400 mt-1">Talleres, Clases & Ponencias</div>
+              </div>
+              <div class="p-4 rounded-xl bg-cyber-bg/80 border border-cyber-border">
+                <div class="text-3xl font-extrabold text-amber-400 font-mono">99.8%</div>
+                <div class="text-xs text-slate-400 mt-1">Integridad en Planes de Respaldo</div>
+              </div>
+            </div>
+
+            <div class="p-4 rounded-xl bg-cyber-mint/5 border border-cyber-mint/20 text-xs sm:text-sm text-slate-300 font-mono leading-relaxed">
+              <span class="text-cyber-mint font-bold">"La seguridad no es un producto que se instala al final, es un proceso continuo integrado en cada línea de código y cada decisión de arquitectura."</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         4. MATRIZ DE HABILIDADES TÉCNICAS FILTRABLE
+    ========================================================== -->
+    <section id="habilidades" class="py-20 border-t border-cyber-border/60 reveal">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+          <div>
+            <span class="font-mono text-xs uppercase tracking-widest text-cyber-cyan">02 // ARSENAL TÉCNICO</span>
+            <h2 class="text-3xl sm:text-4xl font-bold text-white mt-1">Matriz de Habilidades & Herramientas</h2>
+          </div>
+
+          <!-- Filtros de Habilidades -->
+          <div id="skill-filters" class="flex flex-wrap gap-2">
+            <button data-filter="all" class="skill-filter-btn active px-3.5 py-2 rounded-xl text-xs font-mono font-semibold bg-cyber-mint text-cyber-bg transition-all">
+              Todas
+            </button>
+            <button data-filter="ofensiva" class="skill-filter-btn px-3.5 py-2 rounded-xl text-xs font-mono font-semibold bg-cyber-card text-slate-300 border border-cyber-border hover:border-cyber-red/50 transition-all">
+              Seguridad Ofensiva
+            </button>
+            <button data-filter="defensiva" class="skill-filter-btn px-3.5 py-2 rounded-xl text-xs font-mono font-semibold bg-cyber-card text-slate-300 border border-cyber-border hover:border-cyber-cyan/50 transition-all">
+              Blue Team & Redes
+            </button>
+            <button data-filter="devsecops" class="skill-filter-btn px-3.5 py-2 rounded-xl text-xs font-mono font-semibold bg-cyber-card text-slate-300 border border-cyber-border hover:border-cyber-mint/50 transition-all">
+              Desarrollo Seguro
+            </button>
+            <button data-filter="herramientas" class="skill-filter-btn px-3.5 py-2 rounded-xl text-xs font-mono font-semibold bg-cyber-card text-slate-300 border border-cyber-border hover:border-amber-400/50 transition-all">
+              SO & Herramientas
+            </button>
+          </div>
+        </div>
+
+        <!-- Contenedor dinámico de tarjetas de habilidades -->
+        <div id="skills-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          <!-- Renderizado vía JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         5. PORTAFOLIO DE PROYECTOS & LABORATORIOS TÉCNICOS
+    ========================================================== -->
+    <section id="proyectos" class="py-20 border-t border-cyber-border/60 reveal">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+          <div>
+            <span class="font-mono text-xs uppercase tracking-widest text-cyber-mint">03 // LABORATORIOS & CASOS DE ESTUDIO</span>
+            <h2 class="text-3xl sm:text-4xl font-bold text-white mt-1">Proyectos de Ciberseguridad & Arquitectura</h2>
+          </div>
+
+          <!-- Filtros de Proyectos -->
+          <div id="project-filters" class="flex flex-wrap gap-2">
+            <button data-category="all" class="proj-filter-btn active px-3.5 py-2 rounded-xl text-xs font-mono font-semibold bg-cyber-cyan text-cyber-bg transition-all">
+              Todos (4)
+            </button>
+            <button data-category="appsec" class="proj-filter-btn px-3.5 py-2 rounded-xl text-xs font-mono font-semibold bg-cyber-card text-slate-300 border border-cyber-border hover:border-cyber-mint/50 transition-all">
+              AppSec / OWASP
+            </button>
+            <button data-category="hardening" class="proj-filter-btn px-3.5 py-2 rounded-xl text-xs font-mono font-semibold bg-cyber-card text-slate-300 border border-cyber-border hover:border-cyber-cyan/50 transition-all">
+              Hardening & Infra
+            </button>
+            <button data-category="blueteam" class="proj-filter-btn px-3.5 py-2 rounded-xl text-xs font-mono font-semibold bg-cyber-card text-slate-300 border border-cyber-border hover:border-cyber-red/50 transition-all">
+              Redes & Blue Team
+            </button>
+          </div>
+        </div>
+
+        <!-- Grid de Proyectos -->
+        <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- Renderizado vía JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         6. TRAYECTORIA, CERTIFICACIONES & PONENCIAS
+    ========================================================== -->
+    <section id="trayectoria" class="py-20 border-t border-cyber-border/60 reveal">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="mb-12">
+          <span class="font-mono text-xs uppercase tracking-widest text-cyber-cyan">04 // CREDENCIALES & DIVULGACIÓN</span>
+          <h2 class="text-3xl sm:text-4xl font-bold text-white mt-1">Certificaciones, Formación & Ponencias</h2>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+          <!-- Línea de Tiempo Académica y Certificaciones -->
+          <div class="lg:col-span-7 space-y-6">
+            <h3 class="font-mono text-sm text-cyber-mint uppercase tracking-wider flex items-center gap-2">
+              <i class="fa-solid fa-certificate"></i> Certificaciones & Formación Técnica
+            </h3>
+
+            <div class="relative border-l-2 border-cyber-border ml-3 space-y-8 pl-6">
+              <!-- Item 1 -->
+              <div class="relative">
+                <span class="absolute -left-[33px] top-1 w-4 h-4 rounded-full bg-cyber-mint border-4 border-cyber-bg"></span>
+                <div class="p-5 rounded-2xl bg-cyber-card border border-cyber-border hover:border-cyber-mint/40 transition-all">
+                  <div class="flex flex-wrap items-center justify-between gap-2 mb-1">
+                    <span class="font-mono text-xs text-cyber-mint bg-cyber-mint/10 px-2.5 py-0.5 rounded">2025 - Actualidad</span>
+                    <span class="text-xs font-mono text-slate-400">Especialización</span>
+                  </div>
+                  <h4 class="text-lg font-bold text-white">Seguridad Informática, Pentesting Ético & Defensa de Redes</h4>
+                  <p class="text-sm text-slate-400 mt-1">
+                    Evaluación de vulnerabilidades web, auditoría de infraestructura Linux, análisis forense de tráfico y mitigación de amenazas bajo estándares internacionales.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Item 2 -->
+              <div class="relative">
+                <span class="absolute -left-[33px] top-1 w-4 h-4 rounded-full bg-cyber-cyan border-4 border-cyber-bg"></span>
+                <div class="p-5 rounded-2xl bg-cyber-card border border-cyber-border hover:border-cyber-cyan/40 transition-all">
+                  <div class="flex flex-wrap items-center justify-between gap-2 mb-1">
+                    <span class="font-mono text-xs text-cyber-cyan bg-cyber-cyan/10 px-2.5 py-0.5 rounded">2024</span>
+                    <span class="text-xs font-mono text-slate-400">Certificación Empresarial</span>
+                  </div>
+                  <h4 class="text-lg font-bold text-white">Gestión de Sistemas Empresariales & Control de Accesos SAP</h4>
+                  <p class="text-sm text-slate-400 mt-1">
+                    Administración de roles, segregación de funciones (SoD), trazabilidad de auditoría y seguridad en entornos ERP corporativos.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Item 3 -->
+              <div class="relative">
+                <span class="absolute -left-[33px] top-1 w-4 h-4 rounded-full bg-amber-400 border-4 border-cyber-bg"></span>
+                <div class="p-5 rounded-2xl bg-cyber-card border border-cyber-border hover:border-amber-400/40 transition-all">
+                  <div class="flex flex-wrap items-center justify-between gap-2 mb-1">
+                    <span class="font-mono text-xs text-amber-400 bg-amber-400/10 px-2.5 py-0.5 rounded">2023</span>
+                    <span class="text-xs font-mono text-slate-400">Infraestructura & Open Source</span>
+                  </div>
+                  <h4 class="text-lg font-bold text-white">Administración Avanzada de Servidores GNU/Linux & Software Libre</h4>
+                  <p class="text-sm text-slate-400 mt-1">
+                    Despliegue seguro de servicios web, automatización con Bash scripting, gestión de permisos POSIX, SSH hardening y políticas de respaldo.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Ponencias y Talleres -->
+          <div class="lg:col-span-5 space-y-6">
+            <h3 class="font-mono text-sm text-cyber-cyan uppercase tracking-wider flex items-center gap-2">
+              <i class="fa-solid fa-microphone-lines"></i> Ponencias & Talleres Impartidos
+            </h3>
+
+            <div class="space-y-4">
+              <div class="p-5 rounded-2xl bg-cyber-card border border-cyber-border">
+                <div class="flex items-start gap-3.5">
+                  <div class="p-2.5 rounded-xl bg-cyber-mint/10 text-cyber-mint mt-0.5">
+                    <i class="fa-solid fa-shield-virus"></i>
+                  </div>
+                  <div>
+                    <h4 class="font-bold text-white text-base">Desarrollo Seguro: Blindando Aplicaciones contra OWASP Top 10</h4>
+                    <p class="text-xs font-mono text-cyber-mint mt-0.5">Conferencia Técnica • Demo en Vivo</p>
+                    <p class="text-sm text-slate-400 mt-2">
+                      Demostración práctica de explotación de SQL Injection y XSS en entorno aislado, seguida de su remediación estructural mediante Prepared Statements y CSP.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="p-5 rounded-2xl bg-cyber-card border border-cyber-border">
+                <div class="flex items-start gap-3.5">
+                  <div class="p-2.5 rounded-xl bg-cyber-cyan/10 text-cyber-cyan mt-0.5">
+                    <i class="fa-solid fa-network-wired"></i>
+                  </div>
+                  <div>
+                    <h4 class="font-bold text-white text-base">Introducción al Análisis de Tráfico y Defensa Perimetral</h4>
+                    <p class="text-xs font-mono text-cyber-cyan mt-0.5">Taller Universitario • Blue Team Lab</p>
+                    <p class="text-sm text-slate-400 mt-2">
+                      Uso práctico de Wireshark, Nmap y reglas de firewall para identificar escaneos de puertos, tráfico anómalo y vectores de reconocimiento.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="p-5 rounded-2xl bg-cyber-card border border-cyber-border">
+                <div class="flex items-start gap-3.5">
+                  <div class="p-2.5 rounded-xl bg-cyber-red/10 text-cyber-red mt-0.5">
+                    <i class="fa-solid fa-user-secret"></i>
+                  </div>
+                  <div>
+                    <h4 class="font-bold text-white text-base">Ingeniería Social y Higiene Digital en Entornos Organizacionales</h4>
+                    <p class="text-xs font-mono text-cyber-red mt-0.5">Seminario de Concienciación</p>
+                    <p class="text-sm text-slate-400 mt-2">
+                      Estrategias de mitigación del factor humano, autenticación multifactor (MFA) y gestión segura de credenciales.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         7. TERMINAL INTERACTIVA FUNCIONAL
+    ========================================================== -->
+    <section id="terminal-interactiva" class="py-20 border-t border-cyber-border/60 reveal">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="mb-8 text-center">
+          <span class="font-mono text-xs uppercase tracking-widest text-cyber-mint">05 // CONSOLA INTERACTIVA</span>
+          <h2 class="text-3xl sm:text-4xl font-bold text-white mt-1">Explora el Portafolio vía CLI</h2>
+          <p class="text-sm text-slate-400 mt-2">
+            Escribe <code class="text-cyber-mint font-mono bg-cyber-card px-1.5 py-0.5 rounded">help</code> para listar los comandos disponibles o haz clic en los accesos rápidos.
+          </p>
+        </div>
+
+        <!-- Botones rápidos para móviles / comodidad -->
+        <div class="flex flex-wrap justify-center gap-2 mb-4">
+          <button type="button" data-cmd="help" class="quick-cmd px-3 py-1.5 rounded-lg bg-cyber-card hover:bg-slate-800 border border-cyber-border text-xs font-mono text-cyber-mint transition-colors">help</button>
+          <button type="button" data-cmd="whoami" class="quick-cmd px-3 py-1.5 rounded-lg bg-cyber-card hover:bg-slate-800 border border-cyber-border text-xs font-mono text-slate-200 transition-colors">whoami</button>
+          <button type="button" data-cmd="skills" class="quick-cmd px-3 py-1.5 rounded-lg bg-cyber-card hover:bg-slate-800 border border-cyber-border text-xs font-mono text-slate-200 transition-colors">skills</button>
+          <button type="button" data-cmd="projects" class="quick-cmd px-3 py-1.5 rounded-lg bg-cyber-card hover:bg-slate-800 border border-cyber-border text-xs font-mono text-slate-200 transition-colors">projects</button>
+          <button type="button" data-cmd="certs" class="quick-cmd px-3 py-1.5 rounded-lg bg-cyber-card hover:bg-slate-800 border border-cyber-border text-xs font-mono text-slate-200 transition-colors">certs</button>
+          <button type="button" data-cmd="contact" class="quick-cmd px-3 py-1.5 rounded-lg bg-cyber-card hover:bg-slate-800 border border-cyber-border text-xs font-mono text-slate-200 transition-colors">contact</button>
+          <button type="button" data-cmd="clear" class="quick-cmd px-3 py-1.5 rounded-lg bg-cyber-card hover:bg-slate-800 border border-rose-500/40 text-xs font-mono text-rose-400 transition-colors">clear</button>
+        </div>
+
+        <!-- Ventana de Terminal -->
+        <div id="terminal-window" class="rounded-2xl bg-[#070a11] border border-cyber-border shadow-2xl overflow-hidden font-mono text-xs sm:text-sm">
+          <!-- Header Terminal -->
+          <div class="px-4 py-3 bg-slate-900 border-b border-cyber-border flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <span class="w-3 h-3 rounded-full bg-rose-500"></span>
+              <span class="w-3 h-3 rounded-full bg-amber-400"></span>
+              <span class="w-3 h-3 rounded-full bg-emerald-400"></span>
+              <span class="ml-2 text-xs text-slate-400">bash — cyber-portfolio — 80x24</span>
+            </div>
+            <span class="text-[11px] text-cyber-cyan">SSH SECURE</span>
+          </div>
+
+          <!-- Historial de salida -->
+          <div id="terminal-output" class="p-4 sm:p-6 h-80 overflow-y-auto space-y-2.5 text-slate-300 leading-relaxed">
+            <div class="text-cyber-mint">Bienvenido a CyberSec OS v2.6 (GNU/Linux x86_64)</div>
+            <div class="text-slate-400">Escribe <span class="text-white font-semibold">'help'</span> y presiona Enter para ver los comandos disponibles.</div>
+          </div>
+
+          <!-- Línea de entrada -->
+          <form id="terminal-form" class="px-4 sm:px-6 py-3.5 bg-slate-900/60 border-t border-cyber-border flex items-center gap-2">
+            <span class="text-cyber-mint font-semibold shrink-0" id="terminal-prompt">renato@sec-lab:~$</span>
+            <input 
+              id="terminal-input" 
+              type="text" 
+              autocomplete="off" 
+              spellcheck="false"
+              placeholder="Escribe un comando (ej. help, whoami, skills, contact)..." 
+              class="w-full bg-transparent text-white focus:outline-none placeholder:text-slate-600"
+            />
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         8. SECCIÓN DE CONTACTO
+    ========================================================== -->
+    <section id="contacto" class="py-20 border-t border-cyber-border/60 reveal">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+          
+          <!-- Info directa y Copiado al portapapeles -->
+          <div class="lg:col-span-5 space-y-6">
+            <div>
+              <span class="font-mono text-xs uppercase tracking-widest text-cyber-cyan">06 // COMUNICACIÓN CIFRADA</span>
+              <h2 class="text-3xl sm:text-4xl font-bold text-white mt-1">Iniciemos una Conversación</h2>
+              <p class="text-slate-400 text-sm sm:text-base mt-3 leading-relaxed">
+                ¿Buscas auditar la seguridad de tu aplicación, fortalecer tu infraestructura o coordinar una ponencia técnica? Contáctame directamente por teléfono o correo electrónico.
+              </p>
+            </div>
+
+            <!-- Tarjeta Email y Teléfono con botones de acción -->
+            <div class="p-5 rounded-2xl bg-cyber-card border border-cyber-border space-y-4">
+              <div>
+                <div class="text-xs font-mono text-slate-400 uppercase mb-1.5">Correo Electrónico Directo</div>
+                <div class="flex items-center justify-between gap-2 bg-cyber-bg p-3 rounded-xl border border-cyber-border">
+                  <a id="profile-email-link" href="mailto:renato9420@gmail.com" class="font-mono text-xs sm:text-sm text-cyber-mint hover:underline truncate">
+                    <span id="profile-email">renato9420@gmail.com</span>
+                  </a>
+                  <button id="btn-copy-email" type="button" class="shrink-0 px-3 py-1.5 rounded-lg bg-cyber-mint/15 hover:bg-cyber-mint/25 text-cyber-mint font-mono text-xs flex items-center gap-1.5 transition-colors">
+                    <i class="fa-regular fa-copy"></i>
+                    <span>Copiar</span>
+                  </button>
+                </div>
+              </div>
+
+              <div>
+                <div class="text-xs font-mono text-slate-400 uppercase mb-1.5">Teléfono / WhatsApp Directo</div>
+                <div class="flex items-center justify-between gap-2 bg-cyber-bg p-3 rounded-xl border border-cyber-border">
+                  <a id="profile-phone-link" href="tel:+584249228072" class="font-mono text-xs sm:text-sm text-cyber-cyan hover:underline flex items-center gap-2 truncate">
+                    <i class="fa-solid fa-phone text-xs"></i>
+                    <span id="profile-phone">0424-9228072</span>
+                  </a>
+                  <button id="btn-copy-phone" type="button" class="shrink-0 px-3 py-1.5 rounded-lg bg-cyber-cyan/15 hover:bg-cyber-cyan/25 text-cyber-cyan font-mono text-xs flex items-center gap-1.5 transition-colors">
+                    <i class="fa-regular fa-copy"></i>
+                    <span>Copiar</span>
+                  </button>
+                </div>
+              </div>
+
+              <div class="flex items-center gap-2 text-xs text-slate-400 font-mono pt-1">
+                <i class="fa-solid fa-key text-cyber-cyan"></i>
+                <span>PGP Fingerprint: <span class="text-slate-300">4F9A 88C1 0E2B 991D</span></span>
+              </div>
+            </div>
+
+            <!-- Disponibilidad -->
+            <div class="p-5 rounded-2xl bg-cyber-card border border-cyber-border flex items-center gap-4">
+              <div class="w-3 h-3 rounded-full bg-emerald-400 animate-pulse shrink-0"></div>
+              <div class="text-sm text-slate-300">
+                <strong class="text-white">Disponible para:</strong> Consultoría AppSec, Auditorías de Seguridad, Desarrollo Seguro y Formación Técnica.
+              </div>
+            </div>
+          </div>
+
+          <!-- Formulario de Contacto Funcional -->
+          <div class="lg:col-span-7">
+            <form id="contact-form" novalidate class="p-6 sm:p-8 rounded-2xl bg-cyber-card border border-cyber-border space-y-5 shadow-xl">
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                <div>
+                  <label for="contact-name" class="block font-mono text-xs text-slate-300 mb-2">Nombre / Organización *</label>
+                  <input id="contact-name" type="text" required placeholder="Ej. Ana Martínez - TechCorp" class="w-full px-4 py-3 rounded-xl bg-cyber-bg border border-cyber-border focus:border-cyber-mint focus:outline-none text-sm text-white placeholder:text-slate-600 transition-colors" />
+                  <p id="err-name" class="hidden text-xs text-cyber-red font-mono mt-1">Por favor ingresa tu nombre.</p>
+                </div>
+
+                <div>
+                  <label for="contact-email" class="block font-mono text-xs text-slate-300 mb-2">Correo Electrónico *</label>
+                  <input id="contact-email" type="email" required placeholder="ana@empresa.com" class="w-full px-4 py-3 rounded-xl bg-cyber-bg border border-cyber-border focus:border-cyber-mint focus:outline-none text-sm text-white placeholder:text-slate-600 transition-colors" />
+                  <p id="err-email" class="hidden text-xs text-cyber-red font-mono mt-1">Ingresa un correo electrónico válido.</p>
+                </div>
+              </div>
+
+              <div>
+                <label for="contact-subject" class="block font-mono text-xs text-slate-300 mb-2">Asunto / Tipo de Requerimiento</label>
+                <select id="contact-subject" class="w-full px-4 py-3 rounded-xl bg-cyber-bg border border-cyber-border focus:border-cyber-mint focus:outline-none text-sm text-white transition-colors">
+                  <option value="auditoria">Auditoría de Seguridad / Pentesting Web</option>
+                  <option value="secure-dev">Consultoría Desarrollo Seguro (Secure by Design)</option>
+                  <option value="hardening">Hardening de Servidores & Bases de Datos</option>
+                  <option value="ponencia">Taller / Ponencia / Docencia Tecnológica</option>
+                  <option value="otro">Otro asunto profesional</option>
+                </select>
+              </div>
+
+              <div>
+                <label for="contact-message" class="block font-mono text-xs text-slate-300 mb-2">Mensaje *</label>
+                <textarea id="contact-message" rows="4" required placeholder="Describe brevemente el alcance de tu proyecto, consulta o propuesta..." class="w-full px-4 py-3 rounded-xl bg-cyber-bg border border-cyber-border focus:border-cyber-mint focus:outline-none text-sm text-white placeholder:text-slate-600 transition-colors"></textarea>
+                <p id="err-message" class="hidden text-xs text-cyber-red font-mono mt-1">El mensaje debe tener al menos 10 caracteres.</p>
+              </div>
+
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-2">
+                <span class="text-xs font-mono text-slate-400">
+                  <i class="fa-solid fa-lock text-cyber-mint mr-1"></i> Validación local sanitizada
+                </span>
+                <button type="submit" class="px-6 py-3.5 rounded-xl bg-gradient-to-r from-cyber-mint to-cyber-cyan text-cyber-bg font-bold text-sm flex items-center justify-center gap-2 hover:opacity-95 transition-all shadow-neon-mint">
+                  <i class="fa-solid fa-paper-plane"></i>
+                  <span>Transmitir Mensaje</span>
+                </button>
+              </div>
+
+              <!-- Confirmación visual inline -->
+              <div id="contact-success" class="hidden p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/40 text-emerald-300 text-sm font-mono">
+                <i class="fa-solid fa-circle-check mr-2"></i> [200 OK] Mensaje transmitido correctamente. Responderé a la brevedad.
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- =========================================================
+       FOOTER
+  ========================================================== -->
+  <footer class="border-t border-cyber-border bg-cyber-card/50 py-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-slate-400">
+      <div>
+        &copy; <span id="current-year"></span> <span id="footer-name" class="text-white">ING Renato A. Leroux C.</span> — Arquitectura & Ciberseguridad.
+      </div>
+      <div class="flex items-center gap-4">
+        <span class="text-cyber-mint"><i class="fa-solid fa-shield-check mr-1"></i>Secure by Design</span>
+        <span>|</span>
+        <a href="#inicio" class="hover:text-white transition-colors">Volver arriba &uarr;</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- =========================================================
+       MODAL 1: DETALLES TÉCNICOS DE PROYECTO / LABORATORIO
+  ========================================================== -->
+  <div id="project-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
+    <div class="relative w-full max-w-3xl max-h-[90vh] overflow-y-auto rounded-2xl bg-cyber-card border border-cyber-mint/40 shadow-2xl p-6 sm:p-8 space-y-6">
+      <div class="flex items-start justify-between gap-4 border-b border-cyber-border pb-4">
+        <div>
+          <span id="modal-proj-badge" class="font-mono text-xs px-2.5 py-1 rounded bg-cyber-mint/15 text-cyber-mint">APPSEC LAB</span>
+          <h3 id="modal-proj-title" class="text-xl sm:text-2xl font-bold text-white mt-2">Título del Proyecto</h3>
+        </div>
+        <button id="btn-close-proj-modal" type="button" aria-label="Cerrar modal" class="p-2 rounded-lg bg-cyber-bg hover:bg-slate-800 text-slate-400 hover:text-white border border-cyber-border">
+          <i class="fa-solid fa-xmark text-lg"></i>
+        </button>
+      </div>
+
+      <div class="space-y-4 text-sm text-slate-300 leading-relaxed">
+        <div>
+          <h4 class="font-mono text-xs uppercase text-cyber-cyan mb-1">// Descripción & Escenario</h4>
+          <p id="modal-proj-desc"></p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="p-4 rounded-xl bg-cyber-bg border border-cyber-border">
+            <h4 class="font-mono text-xs uppercase text-cyber-red mb-1.5"><i class="fa-solid fa-triangle-exclamation mr-1"></i>Vector / Riesgo Analizado</h4>
+            <p id="modal-proj-risk" class="text-xs text-slate-400"></p>
+          </div>
+          <div class="p-4 rounded-xl bg-cyber-bg border border-cyber-border">
+            <h4 class="font-mono text-xs uppercase text-cyber-mint mb-1.5"><i class="fa-solid fa-shield-halved mr-1"></i>Arquitectura & Mitigación</h4>
+            <p id="modal-proj-mitigation" class="text-xs text-slate-400"></p>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="font-mono text-xs uppercase text-amber-400 mb-2">// Snippet Técnico / Configuración Segura</h4>
+          <pre class="p-4 rounded-xl bg-[#060911] border border-cyber-border overflow-x-auto font-mono text-xs text-emerald-300"><code id="modal-proj-code"></code></pre>
+        </div>
+
+        <div>
+          <h4 class="font-mono text-xs uppercase text-slate-400 mb-2">// Stack & Herramientas Utilizadas</h4>
+          <div id="modal-proj-tools" class="flex flex-wrap gap-2"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================
+       MODAL 2: EDITOR DE PERFIL / MODO DEMO EN VIVO
+  ========================================================== -->
+  <div id="editor-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
+    <div class="relative w-full max-w-xl max-h-[90vh] overflow-y-auto rounded-2xl bg-cyber-card border border-cyber-cyan/50 shadow-2xl p-6 sm:p-7 space-y-5">
+      <div class="flex items-center justify-between border-b border-cyber-border pb-3">
+        <div class="flex items-center gap-2">
+          <i class="fa-solid fa-sliders text-cyber-cyan"></i>
+          <h3 class="text-lg font-bold text-white">Personalizar Portafolio (Modo Demo)</h3>
+        </div>
+        <button id="btn-close-editor" type="button" class="p-2 rounded-lg bg-cyber-bg text-slate-400 hover:text-white border border-cyber-border">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <p class="text-xs text-slate-400">
+        Edita los campos para adaptar este portafolio con tus propios datos en tiempo real.
+      </p>
+
+      <form id="editor-form" class="space-y-4 text-sm">
+        <div>
+          <label class="block font-mono text-xs text-slate-300 mb-1">Nombre / Título Profesional</label>
+          <input id="edit-name" type="text" class="w-full px-3.5 py-2.5 rounded-xl bg-cyber-bg border border-cyber-border text-white focus:border-cyber-cyan focus:outline-none" />
+        </div>
+        <div>
+          <label class="block font-mono text-xs text-slate-300 mb-1">Especialidad / Subtítulo</label>
+          <input id="edit-role" type="text" class="w-full px-3.5 py-2.5 rounded-xl bg-cyber-bg border border-cyber-border text-white focus:border-cyber-cyan focus:outline-none" />
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block font-mono text-xs text-slate-300 mb-1">Correo Electrónico</label>
+            <input id="edit-email" type="email" class="w-full px-3.5 py-2.5 rounded-xl bg-cyber-bg border border-cyber-border text-white focus:border-cyber-cyan focus:outline-none" />
+          </div>
+          <div>
+            <label class="block font-mono text-xs text-slate-300 mb-1">Teléfono / Datos de Contacto</label>
+            <input id="edit-phone" type="text" class="w-full px-3.5 py-2.5 rounded-xl bg-cyber-bg border border-cyber-border text-white focus:border-cyber-cyan focus:outline-none" />
+          </div>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <div>
+            <label class="block font-mono text-xs text-slate-300 mb-1">Ubicación</label>
+            <input id="edit-location" type="text" class="w-full px-3.5 py-2.5 rounded-xl bg-cyber-bg border border-cyber-border text-white focus:border-cyber-cyan focus:outline-none" />
+          </div>
+          <div>
+            <label class="block font-mono text-xs text-slate-300 mb-1">URL GitHub</label>
+            <input id="edit-github" type="url" class="w-full px-3.5 py-2.5 rounded-xl bg-cyber-bg border border-cyber-border text-white focus:border-cyber-cyan focus:outline-none" />
+          </div>
+          <div>
+            <label class="block font-mono text-xs text-slate-300 mb-1">URL LinkedIn</label>
+            <input id="edit-linkedin" type="url" class="w-full px-3.5 py-2.5 rounded-xl bg-cyber-bg border border-cyber-border text-white focus:border-cyber-cyan focus:outline-none" />
+          </div>
+        </div>
+        <div>
+          <label class="block font-mono text-xs text-slate-300 mb-1">Resumen Profesional</label>
+          <textarea id="edit-bio" rows="3" class="w-full px-3.5 py-2.5 rounded-xl bg-cyber-bg border border-cyber-border text-white focus:border-cyber-cyan focus:outline-none"></textarea>
+        </div>
+
+        <div class="flex items-center justify-end gap-3 pt-2">
+          <button type="button" id="btn-reset-profile" class="px-4 py-2 rounded-xl bg-cyber-bg border border-cyber-border text-xs font-mono text-slate-300 hover:text-white">
+            Restaurar Default
+          </button>
+          <button type="submit" class="px-5 py-2.5 rounded-xl bg-cyber-mint text-cyber-bg font-bold text-xs font-mono hover:opacity-90">
+            Aplicar Cambios
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- =========================================================
+       JAVASCRIPT: DATOS, RENDERIZADO DINÁMICO E INTERACTIVIDAD
+  ========================================================== -->
+  <script>
+    // ---------------------------------------------------------
+    // 1. ESTADO DEL PERFIL (Editable en vivo)
+    // ---------------------------------------------------------
+    const defaultProfile = {
+      name: "ING Renato A. Leroux C.",
+      handle: "rleroux",
+      promptUser: "renato@sec-lab",
+      role: "Especialista en Ciberseguridad | Desarrollo Seguro (Secure by Design) & Docencia Tecnológica",
+      bio: "Protejo infraestructuras críticas, aplicaciones web y bases de datos combinando mentalidad ofensiva (Red Team) con arquitectura resiliente (Blue Team). Apasionado por la auditoría de sistemas, mitigación de vulnerabilidades OWASP y formación técnica de alto impacto.",
+      email: "renato9420@gmail.com",
+      phone: "0424-9228072",
+      location: "Venezuela / Remoto",
+      github: "https://github.com",
+      linkedin: "https://linkedin.com"
+    };
+
+    let currentProfile = { ...defaultProfile };
+
+    // ---------------------------------------------------------
+    // 2. BASE DE DATOS DE HABILIDADES TÉCNICAS
+    // ---------------------------------------------------------
+    const skillsData = [
+      {
+        name: "OWASP Top 10 & AppSec Auditing",
+        category: "ofensiva",
+        catLabel: "Seguridad Ofensiva",
+        level: 94,
+        color: "bg-cyber-red",
+        tags: ["SQLi", "XSS", "CSRF", "IDOR", "Broken Auth"]
+      },
+      {
+        name: "Pentesting & Reconocimiento",
+        category: "ofensiva",
+        catLabel: "Seguridad Ofensiva",
+        level: 90,
+        color: "bg-cyber-red",
+        tags: ["Nmap", "Burp Suite", "Gobuster", "Enum4linux"]
+      },
+      {
+        name: "Análisis de Tráfico & Detección",
+        category: "defensiva",
+        catLabel: "Blue Team & Redes",
+        level: 92,
+        color: "bg-cyber-cyan",
+        tags: ["Wireshark", "TCP/IP", "Firewall Rules", "IDS/IPS"]
+      },
+      {
+        name: "Hardening de Servidores & BD",
+        category: "defensiva",
+        catLabel: "Blue Team & Redes",
+        level: 95,
+        color: "bg-cyber-cyan",
+        tags: ["Linux Hardening", "SSH", "MySQL", "SQL Server", "Backups"]
+      },
+      {
+        name: "Arquitectura Secure by Design",
+        category: "devsecops",
+        catLabel: "Desarrollo Seguro",
+        level: 96,
+        color: "bg-cyber-mint",
+        tags: ["PDO Prepared", "RBAC", "Input Sanitization", "Hashing Argon2"]
+      },
+      {
+        name: "Sistemas Operativos & Suite Táctica",
+        category: "herramientas",
+        catLabel: "SO & Herramientas",
+        level: 93,
+        color: "bg-amber-400",
+        tags: ["Kali Linux", "Parrot OS", "Debian", "Bash", "Git"]
+      }
+    ];
+
+    // ---------------------------------------------------------
+    // 3. BASE DE DATOS DE PROYECTOS Y LABORATORIOS
+    // ---------------------------------------------------------
+    const projectsData = [
+      {
+        id: 1,
+        title: "Laboratorio Local de Inyección SQL y Mitigación (Secure by Design)",
+        category: "appsec",
+        badge: "APPSEC & OWASP LAB",
+        badgeColor: "text-cyber-mint bg-cyber-mint/10 border-cyber-mint/30",
+        summary: "Entorno controlado dual (vulnerable vs. blindado) en PHP y MySQL para demostrar la extracción de datos vía SQLi y su erradicación mediante consultas parametrizadas.",
+        risk: "Concatenación directa de parámetros HTTP en consultas SQL permitiendo bypass de autenticación (' OR '1'='1) y volcado de tablas mediante UNION SELECT.",
+        mitigation: "Implementación estricta de PDO con Prepared Statements, principio de mínimo privilegio en el usuario de BD y validación de tipos de datos.",
+        code: `// Implementación Segura en PHP (PDO - Secure by Design)
+$stmt = $pdo->prepare('SELECT id, username, password_hash, role FROM users WHERE email = :email LIMIT 1');
+$stmt->execute(['email' => filter_var($inputEmail, FILTER_SANITIZE_EMAIL)]);
+$user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+if ($user && password_verify($inputPassword, $user['password_hash'])) {
+    session_regenerate_id(true); // Prevención de Session Fixation
+}`,
+        tools: ["PHP 8", "MySQL", "PDO", "Burp Suite", "OWASP ZAP", "Docker"]
+      },
+      {
+        id: 2,
+        title: "Auditoría de Seguridad y Hardening de Servidores Linux & Bases de Datos",
+        category: "hardening",
+        badge: "INFRASTRUCTURE HARDENING",
+        badgeColor: "text-cyber-cyan bg-cyber-cyan/10 border-cyber-cyan/30",
+        summary: "Bastionado integral de servidores Linux y motores SQL Server / MySQL con control de acceso granular, políticas de cifrado y automatización de respaldos verificados.",
+        risk: "Exposición de puertos administrativos por defecto, acceso root vía SSH con contraseña, permisos excesivos en bases de datos y ausencia de trazabilidad.",
+        mitigation: "Deshabilitación de login root SSH, autenticación por llaves Ed25519, Fail2Ban, cifrado de backups con GPG y auditoría periódica de logs.",
+        code: `# /etc/ssh/sshd_config - Configuración Bastionada
+Port 2222
+PermitRootLogin no
+PasswordAuthentication no
+PubkeyAuthentication yes
+MaxAuthTries 3
+AllowUsers secadmin@10.0.10.0/24
+
+# Backup cifrado automatizado con verificación SHA-256
+mysqldump --single-transaction prod_db | gzip | gpg --encrypt -r "sec@lab" > backup_$(date +%F).sql.gz.gpg`,
+        tools: ["Debian/Ubuntu", "SQL Server", "MySQL", "SSH Hardening", "Fail2Ban", "Bash"]
+      },
+      {
+        id: 3,
+        title: "Análisis de Tráfico de Red y Detección de Anomalías",
+        category: "blueteam",
+        badge: "BLUE TEAM & NETWORKING",
+        badgeColor: "text-cyber-red bg-cyber-red/10 border-cyber-red/30",
+        summary: "Captura, inspección de paquetes y correlación de eventos para identificar escaneos de reconocimiento, intentos de fuerza bruta y exfiltración de datos.",
+        risk: "Sondeos silenciosos (SYN Stealth Scan), tráfico DNS anómalo y transmisión de credenciales en texto claro dentro de segmentos internos.",
+        mitigation: "Filtros de captura en Wireshark, auditoría activa con Nmap NSE y despliegue de reglas restrictivas en firewall perimetral (UFW / iptables).",
+        code: `# Filtro de inspección en Wireshark para detectar anomalías TCP SYN / HTTP
+(tcp.flags.syn == 1 && tcp.flags.ack == 0) || http.request.method == "POST"
+
+# Reglas restrictivas de Firewall (Default Deny)
+ufw default deny incoming
+ufw default allow outgoing
+ufw allow from 192.168.10.0/24 to any port 2222 proto tcp`,
+        tools: ["Wireshark", "Nmap", "iptables / UFW", "tcpdump", "Kali Linux"]
+      },
+      {
+        id: 4,
+        title: "Plataforma de Gestión Académica y Control de Integridad de Datos",
+        category: "appsec",
+        badge: "SECURE ARCHITECTURE",
+        badgeColor: "text-amber-400 bg-amber-400/10 border-amber-400/30",
+        summary: "Sistema web desarrollado bajo principios de seguridad desde el diseño para proteger expedientes académicos, calificaciones y registros administrativos.",
+        risk: "Manipulación no autorizada de registros (IDOR), elevación de privilegios horizontal y alteración silenciosa de calificaciones históricas.",
+        mitigation: "Control de acceso basado en roles (RBAC), bitácora de auditoría inmutable con hashes de integridad y tokens anti-CSRF en cada transacción.",
+        code: `// Generación de huella de integridad para registro académico crítico
+$payload = implode('|', [$studentId, $courseCode, $grade, $timestamp, $auditorId]);
+$integrityHash = hash_hmac('sha256', $payload, $_ENV['AUDIT_SECRET_KEY']);
+
+// Verificación previa a emisión de certificado
+if (!hash_equals($storedHash, $integrityHash)) {
+    logSecurityAlert('INTEGRITY_VIOLATION', $studentId);
+    throw new SecurityException('Alteración detectada en el registro.');
+}`,
+        tools: ["Arquitectura RBAC", "HMAC-SHA256", "MySQL", "CSRF Protection", "Audit Logs"]
+      }
+    ];
+
+    // ---------------------------------------------------------
+    // 4. UTILIDAD DE NOTIFICACIONES (TOAST SIN ALERT)
+    // ---------------------------------------------------------
+    function showToast(message, type = 'mint') {
+      const container = document.getElementById('toast-container');
+      const toast = document.createElement('div');
+      const borderClass = type === 'red' ? 'border-cyber-red text-cyber-red' : 'border-cyber-mint text-cyber-mint';
+      
+      toast.className = `pointer-events-auto px-4 py-3 rounded-xl bg-cyber-card/95 backdrop-blur-md border ${borderClass} shadow-2xl font-mono text-xs flex items-center gap-2.5 transform transition-all duration-300 translate-y-2 opacity-0`;
+      toast.innerHTML = `<i class="fa-solid fa-terminal"></i><span class="text-slate-200">${message}</span>`;
+      
+      container.appendChild(toast);
+      requestAnimationFrame(() => {
+        toast.classList.remove('translate-y-2', 'opacity-0');
+      });
+
+      setTimeout(() => {
+        toast.classList.add('opacity-0', 'translate-y-2');
+        setTimeout(() => toast.remove(), 300);
+      }, 3200);
+    }
+
+    // ---------------------------------------------------------
+    // 5. RENDERIZADO DE HABILIDADES Y PROYECTOS
+    // ---------------------------------------------------------
+    function renderSkills(filter = 'all') {
+      const grid = document.getElementById('skills-grid');
+      const filtered = filter === 'all' ? skillsData : skillsData.filter(s => s.category === filter);
+
+      grid.innerHTML = filtered.map(skill => `
+        <div class="p-6 rounded-2xl bg-cyber-card border border-cyber-border hover:border-slate-600 transition-all flex flex-col justify-between space-y-4">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-2">
+              <span class="font-mono text-[11px] uppercase tracking-wider text-slate-400">${skill.catLabel}</span>
+              <span class="font-mono text-xs font-bold text-white">${skill.level}%</span>
+            </div>
+            <h3 class="text-base sm:text-lg font-bold text-white">${skill.name}</h3>
+            <div class="w-full h-2 rounded-full bg-slate-800 mt-3 overflow-hidden">
+              <div class="${skill.color} h-full rounded-full transition-all duration-700" style="width: ${skill.level}%"></div>
+            </div>
+          </div>
+          <div class="flex flex-wrap gap-1.5 pt-1">
+            ${skill.tags.map(tag => `<span class="px-2.5 py-1 rounded-md bg-cyber-bg border border-cyber-border font-mono text-[11px] text-slate-300">${tag}</span>`).join('')}
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function renderProjects(category = 'all') {
+      const grid = document.getElementById('projects-grid');
+      const filtered = category === 'all' ? projectsData : projectsData.filter(p => p.category === category);
+
+      grid.innerHTML = filtered.map(proj => `
+        <article class="p-6 sm:p-7 rounded-2xl bg-cyber-card border border-cyber-border hover:border-cyber-mint/40 transition-all flex flex-col justify-between space-y-5 group">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between gap-2">
+              <span class="font-mono text-[11px] px-2.5 py-1 rounded-md border ${proj.badgeColor}">${proj.badge}</span>
+              <span class="font-mono text-xs text-slate-500">LAB-0${proj.id}</span>
+            </div>
+            <h3 class="text-xl font-bold text-white group-hover:text-cyber-mint transition-colors">
+              ${proj.title}
+            </h3>
+            <p class="text-sm text-slate-400 leading-relaxed">
+              ${proj.summary}
+            </p>
+          </div>
+
+          <div class="space-y-4 pt-2 border-t border-cyber-border/70">
+            <div class="flex flex-wrap gap-1.5">
+              ${proj.tools.map(t => `<span class="px-2 py-0.5 rounded bg-cyber-bg text-slate-300 font-mono text-[11px] border border-cyber-border/80">${t}</span>`).join('')}
+            </div>
+
+            <button type="button" onclick="openProjectModal(${proj.id})" class="w-full py-2.5 px-4 rounded-xl bg-cyber-bg hover:bg-cyber-mint hover:text-cyber-bg border border-cyber-mint/40 text-cyber-mint font-mono text-xs font-semibold flex items-center justify-center gap-2 transition-all">
+              <i class="fa-solid fa-code"></i>
+              <span>Inspeccionar Arquitectura & Snippet</span>
+            </button>
+          </div>
+        </article>
+      `).join('');
+    }
+
+    // ---------------------------------------------------------
+    // 6. MODAL DE DETALLES DE PROYECTO
+    // ---------------------------------------------------------
+    window.openProjectModal = function(id) {
+      const proj = projectsData.find(p => p.id === id);
+      if (!proj) return;
+
+      document.getElementById('modal-proj-badge').textContent = proj.badge;
+      document.getElementById('modal-proj-title').textContent = proj.title;
+      document.getElementById('modal-proj-desc').textContent = proj.summary;
+      document.getElementById('modal-proj-risk').textContent = proj.risk;
+      document.getElementById('modal-proj-mitigation').textContent = proj.mitigation;
+      document.getElementById('modal-proj-code').textContent = proj.code;
+      document.getElementById('modal-proj-tools').innerHTML = proj.tools
+        .map(t => `<span class="px-2.5 py-1 rounded-lg bg-cyber-bg border border-cyber-border font-mono text-xs text-cyber-cyan">${t}</span>`)
+        .join('');
+
+      const modal = document.getElementById('project-modal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    };
+
+    function closeProjectModal() {
+      const modal = document.getElementById('project-modal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    // ---------------------------------------------------------
+    // 7. EDITOR DE PERFIL EN VIVO
+    // ---------------------------------------------------------
+    function applyProfileToDOM() {
+      document.getElementById('profile-name').textContent = currentProfile.name;
+      document.getElementById('footer-name').textContent = currentProfile.name;
+      document.getElementById('profile-role').textContent = currentProfile.role;
+      document.getElementById('profile-bio').textContent = currentProfile.bio;
+      
+      document.getElementById('profile-email').textContent = currentProfile.email;
+      document.getElementById('profile-email-link').href = `mailto:${currentProfile.email}`;
+      
+      document.getElementById('profile-phone').textContent = currentProfile.phone;
+      const cleanPhoneHref = currentProfile.phone.replace(/[^0-9+]/g, '');
+      document.getElementById('profile-phone-link').href = `tel:${cleanPhoneHref}`;
+      
+      document.getElementById('profile-location').textContent = currentProfile.location;
+      document.getElementById('link-github').href = currentProfile.github;
+      document.getElementById('link-linkedin').href = currentProfile.linkedin;
+
+      // Extraer primer nombre limpio para el prompt CLI (ej. renato@sec-lab:~$)
+      const baseName = currentProfile.name
+        .replace(/^ing\.?\s+/i, '')
+        .trim()
+        .split(/\s+/)[0]
+        .toLowerCase()
+        .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+        .replace(/[^a-z0-9]/g, '') || "renato";
+
+      currentProfile.promptUser = `${baseName}@sec-lab`;
+      document.getElementById('nav-handle').textContent = currentProfile.handle;
+      document.getElementById('terminal-prompt').textContent = `${currentProfile.promptUser}:~$`;
+    }
+
+    // ---------------------------------------------------------
+    // 8. TERMINAL INTERACTIVA CLI
+    // ---------------------------------------------------------
+    function executeTerminalCommand(rawCmd) {
+      const output = document.getElementById('terminal-output');
+      const cmd = rawCmd.trim().toLowerCase();
+
+      // Imprimir comando ingresado
+      const cmdLine = document.createElement('div');
+      cmdLine.innerHTML = `<span class="text-cyber-mint font-semibold">${escapeHTML(currentProfile.promptUser)}:~$</span> <span class="text-white">${escapeHTML(rawCmd)}</span>`;
+      output.appendChild(cmdLine);
+
+      if (!cmd) {
+        output.scrollTop = output.scrollHeight;
+        return;
+      }
+
+      const response = document.createElement('div');
+      response.className = "pl-2 border-l-2 border-cyber-border text-slate-300 space-y-1";
+
+      switch (cmd) {
+        case 'help':
+          response.innerHTML = `
+            <div class="text-cyber-cyan font-semibold">Comandos disponibles:</div>
+            <div><span class="text-cyber-mint">whoami</span>   — Muestra identidad, especialidad y contacto rápido</div>
+            <div><span class="text-cyber-mint">skills</span>   — Lista matriz de capacidades Red Team, Blue Team & AppSec</div>
+            <div><span class="text-cyber-mint">projects</span> — Lista los laboratorios y casos de estudio técnicos</div>
+            <div><span class="text-cyber-mint">certs</span>    — Muestra certificaciones y ponencias destacadas</div>
+            <div><span class="text-cyber-mint">contact</span>  — Muestra teléfono directo, correo electrónico y huella PGP</div>
+            <div><span class="text-cyber-mint">clear</span>    — Limpia el historial de la consola</div>
+          `;
+          break;
+
+        case 'whoami':
+          response.innerHTML = `
+            <div class="text-white font-bold">${escapeHTML(currentProfile.name)}</div>
+            <div class="text-cyber-cyan">${escapeHTML(currentProfile.role)}</div>
+            <div class="text-xs text-cyber-mint mt-1">Tel: ${escapeHTML(currentProfile.phone)} | Email: ${escapeHTML(currentProfile.email)}</div>
+            <div class="text-slate-400 text-xs mt-1">${escapeHTML(currentProfile.bio)}</div>
+          `;
+          break;
+
+        case 'skills':
+          response.innerHTML = skillsData.map(s => 
+            `<div><span class="text-cyber-mint">[${s.level}%]</span> <span class="text-white">${s.name}</span> <span class="text-slate-500">(${s.tags.join(', ')})</span></div>`
+          ).join('');
+          break;
+
+        case 'projects':
+          response.innerHTML = projectsData.map(p => 
+            `<div><span class="text-cyber-cyan">[LAB-0${p.id}]</span> <span class="text-white font-semibold">${p.title}</span> — <span class="text-slate-400">${p.tools.slice(0,3).join(', ')}</span></div>`
+          ).join('') + `<div class="text-xs text-cyber-mint mt-1">Tip: Haz clic en "Inspeccionar Arquitectura & Snippet" en la sección de Proyectos para ver el código.</div>`;
+          break;
+
+        case 'certs':
+          response.innerHTML = `
+            <div><span class="text-amber-400">[CERT]</span> Seguridad Informática, Pentesting Ético & Defensa de Redes</div>
+            <div><span class="text-amber-400">[CERT]</span> Gestión de Sistemas Empresariales & Control de Accesos SAP</div>
+            <div><span class="text-amber-400">[CERT]</span> Administración Avanzada de Servidores GNU/Linux & Software Libre</div>
+            <div><span class="text-cyber-mint">[TALK]</span> Ponente: Desarrollo Seguro (OWASP Top 10) & Análisis de Tráfico</div>
+          `;
+          break;
+
+        case 'contact':
+          response.innerHTML = `
+            <div>Nombre: <span class="text-white font-semibold">${escapeHTML(currentProfile.name)}</span></div>
+            <div>Teléfono: <span class="text-cyber-cyan">${escapeHTML(currentProfile.phone)}</span></div>
+            <div>Email: <span class="text-cyber-mint">${escapeHTML(currentProfile.email)}</span></div>
+            <div>Ubicación: <span class="text-white">${escapeHTML(currentProfile.location)}</span></div>
+            <div>PGP Key: <span class="text-slate-400">4F9A 88C1 0E2B 991D</span></div>
+          `;
+          break;
+
+        case 'clear':
+          output.innerHTML = '';
+          return;
+
+        default:
+          response.innerHTML = `<span class="text-cyber-red">bash: ${escapeHTML(cmd)}: comando no encontrado.</span> Escribe <span class="text-cyber-mint">'help'</span> para ver opciones.`;
+      }
+
+      output.appendChild(response);
+      output.scrollTop = output.scrollHeight;
+    }
+
+    function escapeHTML(str) {
+      return str.replace(/[&<>"']/g, m => ({
+        '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+      }[m]));
+    }
+
+    // ---------------------------------------------------------
+    // 9. INICIALIZACIÓN Y EVENT LISTENERS
+    // ---------------------------------------------------------
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('current-year').textContent = new Date().getFullYear();
+
+      // Render inicial
+      renderSkills('all');
+      renderProjects('all');
+
+      // Efecto Typewriter en Hero
+      const messages = [
+        "> Iniciando sesión segura... [OK]",
+        "> Verificando integridad TLS 1.3... [VERIFIED]",
+        "> Cargando módulos Red Team & Blue Team... [READY]"
+      ];
+      let msgIdx = 0;
+      let charIdx = 0;
+      const typeEl = document.getElementById('hero-typewriter');
+
+      function typeLoop() {
+        const current = messages[msgIdx];
+        if (charIdx <= current.length) {
+          typeEl.textContent = current.slice(0, charIdx);
+          charIdx++;
+          setTimeout(typeLoop, 45);
+        } else {
+          setTimeout(() => {
+            charIdx = 0;
+            msgIdx = (msgIdx + 1) % messages.length;
+            typeLoop();
+          }, 2600);
+        }
+      }
+      typeLoop();
+
+      // Menú móvil
+      const mobileBtn = document.getElementById('mobile-menu-btn');
+      const mobileMenu = document.getElementById('mobile-menu');
+      mobileBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+      document.querySelectorAll('.mobile-link').forEach(link => {
+        link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+      });
+
+      // Filtros de habilidades
+      document.querySelectorAll('.skill-filter-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.skill-filter-btn').forEach(b => {
+            b.classList.remove('bg-cyber-mint', 'text-cyber-bg');
+            b.classList.add('bg-cyber-card', 'text-slate-300', 'border', 'border-cyber-border');
+          });
+          btn.classList.remove('bg-cyber-card', 'text-slate-300', 'border', 'border-cyber-border');
+          btn.classList.add('bg-cyber-mint', 'text-cyber-bg');
+          renderSkills(btn.dataset.filter);
+        });
+      });
+
+      // Filtros de proyectos
+      document.querySelectorAll('.proj-filter-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.proj-filter-btn').forEach(b => {
+            b.classList.remove('bg-cyber-cyan', 'text-cyber-bg');
+            b.classList.add('bg-cyber-card', 'text-slate-300', 'border', 'border-cyber-border');
+          });
+          btn.classList.remove('bg-cyber-card', 'text-slate-300', 'border', 'border-cyber-border');
+          btn.classList.add('bg-cyber-cyan', 'text-cyber-bg');
+          renderProjects(btn.dataset.category);
+        });
+      });
+
+      // Modal Proyecto eventos de cierre
+      document.getElementById('btn-close-proj-modal').addEventListener('click', closeProjectModal);
+      document.getElementById('project-modal').addEventListener('click', (e) => {
+        if (e.target.id === 'project-modal') closeProjectModal();
+      });
+
+      // Modal Editor Perfil
+      const editorModal = document.getElementById('editor-modal');
+      document.getElementById('btn-open-editor').addEventListener('click', () => {
+        document.getElementById('edit-name').value = currentProfile.name;
+        document.getElementById('edit-role').value = currentProfile.role;
+        document.getElementById('edit-email').value = currentProfile.email;
+        document.getElementById('edit-phone').value = currentProfile.phone;
+        document.getElementById('edit-location').value = currentProfile.location;
+        document.getElementById('edit-github').value = currentProfile.github;
+        document.getElementById('edit-linkedin').value = currentProfile.linkedin;
+        document.getElementById('edit-bio').value = currentProfile.bio;
+        editorModal.classList.remove('hidden');
+        editorModal.classList.add('flex');
+      });
+
+      document.getElementById('btn-close-editor').addEventListener('click', () => {
+        editorModal.classList.add('hidden');
+        editorModal.classList.remove('flex');
+      });
+
+      document.getElementById('editor-form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        currentProfile.name = document.getElementById('edit-name').value.trim() || defaultProfile.name;
+        currentProfile.role = document.getElementById('edit-role').value.trim() || defaultProfile.role;
+        currentProfile.email = document.getElementById('edit-email').value.trim() || defaultProfile.email;
+        currentProfile.phone = document.getElementById('edit-phone').value.trim() || defaultProfile.phone;
+        currentProfile.location = document.getElementById('edit-location').value.trim() || defaultProfile.location;
+        currentProfile.github = document.getElementById('edit-github').value.trim() || defaultProfile.github;
+        currentProfile.linkedin = document.getElementById('edit-linkedin').value.trim() || defaultProfile.linkedin;
+        currentProfile.bio = document.getElementById('edit-bio').value.trim() || defaultProfile.bio;
+
+        applyProfileToDOM();
+        editorModal.classList.add('hidden');
+        editorModal.classList.remove('flex');
+        showToast('Perfil actualizado en tiempo real.');
+      });
+
+      document.getElementById('btn-reset-profile').addEventListener('click', () => {
+        currentProfile = { ...defaultProfile };
+        applyProfileToDOM();
+        editorModal.classList.add('hidden');
+        editorModal.classList.remove('flex');
+        showToast('Perfil restaurado a valores predeterminados.');
+      });
+
+      // Descargar CV Simulado (genera un archivo de resumen profesional descargable)
+      document.getElementById('btn-download-cv').addEventListener('click', () => {
+        const cvContent = `====================================================================
+CURRICULUM VITAE - CIBERSEGURIDAD & ARQUITECTURA SEGURA
+====================================================================
+Nombre: ${currentProfile.name}
+Especialidad: ${currentProfile.role}
+Teléfono: ${currentProfile.phone}
+Email: ${currentProfile.email}
+Ubicación: ${currentProfile.location}
+GitHub: ${currentProfile.github}
+LinkedIn: ${currentProfile.linkedin}
+
+RESUMEN PROFESIONAL:
+${currentProfile.bio}
+
+COMPETENCIAS TÉCNICAS:
+- Seguridad Ofensiva: OWASP Top 10, Pentesting Web, Nmap, Burp Suite.
+- Blue Team & Hardening: Linux Hardening, Wireshark, Firewalling, MySQL / SQL Server.
+- Desarrollo Seguro: Secure by Design, PDO Prepared Statements, RBAC, HMAC-SHA256.
+====================================================================`;
+
+        const blob = new Blob([cvContent], { type: 'text/plain;charset=utf-8' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `CV_${currentProfile.name.replace(/[^a-zA-Z0-9]/g, '_')}_CyberSec.txt`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+        showToast('CV descargado correctamente.');
+      });
+
+      // Copiar correo y teléfono al portapapeles (con fallback execCommand)
+      function copyTextWithToast(text, label) {
+        const tempInput = document.createElement('textarea');
+        tempInput.value = text;
+        document.body.appendChild(tempInput);
+        tempInput.select();
+        try {
+          document.execCommand('copy');
+          showToast(`${label} copiado: ${text}`);
+        } catch (err) {
+          showToast('No se pudo copiar automáticamente.', 'red');
+        }
+        document.body.removeChild(tempInput);
+      }
+
+      document.getElementById('btn-copy-email').addEventListener('click', () => {
+        copyTextWithToast(currentProfile.email, 'Correo');
+      });
+
+      document.getElementById('btn-copy-phone').addEventListener('click', () => {
+        copyTextWithToast(currentProfile.phone, 'Teléfono');
+      });
+
+      document.getElementById('btn-close-editor').addEventListener('click', () => {
+        editorModal.classList.add('hidden');
+        editorModal.classList.remove('flex');
+      });
+
+      document.getElementById('editor-form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        currentProfile.name = document.getElementById('edit-name').value.trim() || defaultProfile.name;
+        currentProfile.role = document.getElementById('edit-role').value.trim() || defaultProfile.role;
+        currentProfile.email = document.getElementById('edit-email').value.trim() || defaultProfile.email;
+        currentProfile.location = document.getElementById('edit-location').value.trim() || defaultProfile.location;
+        currentProfile.github = document.getElementById('edit-github').value.trim() || defaultProfile.github;
+        currentProfile.linkedin = document.getElementById('edit-linkedin').value.trim() || defaultProfile.linkedin;
+        currentProfile.bio = document.getElementById('edit-bio').value.trim() || defaultProfile.bio;
+
+        applyProfileToDOM();
+        editorModal.classList.add('hidden');
+        editorModal.classList.remove('flex');
+        showToast('Perfil actualizado en tiempo real.');
+      });
+
+      document.getElementById('btn-reset-profile').addEventListener('click', () => {
+        currentProfile = { ...defaultProfile };
+        applyProfileToDOM();
+        editorModal.classList.add('hidden');
+        editorModal.classList.remove('flex');
+        showToast('Perfil restaurado a valores predeterminados.');
+      });
+
+      // Descargar CV Simulado (genera un archivo de resumen profesional descargable)
+      document.getElementById('btn-download-cv').addEventListener('click', () => {
+        const cvContent = `====================================================================
+CURRICULUM VITAE - CIBERSEGURIDAD & ARQUITECTURA SEGURA
+====================================================================
+Nombre: ${currentProfile.name}
+Especialidad: ${currentProfile.role}
+Email: ${currentProfile.email}
+Ubicación: ${currentProfile.location}
+GitHub: ${currentProfile.github}
+LinkedIn: ${currentProfile.linkedin}
+
+RESUMEN PROFESIONAL:
+${currentProfile.bio}
+
+COMPETENCIAS TÉCNICAS:
+- Seguridad Ofensiva: OWASP Top 10, Pentesting Web, Nmap, Burp Suite.
+- Blue Team & Hardening: Linux Hardening, Wireshark, Firewalling, MySQL / SQL Server.
+- Desarrollo Seguro: Secure by Design, PDO Prepared Statements, RBAC, HMAC-SHA256.
+====================================================================`;
+
+        const blob = new Blob([cvContent], { type: 'text/plain;charset=utf-8' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `CV_${currentProfile.name.replace(/\s+/g, '_')}_CyberSec.txt`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+        showToast('CV descargado correctamente.');
+      });
+
+      // Copiar correo al portapapeles (con fallback execCommand)
+      document.getElementById('btn-copy-email').addEventListener('click', () => {
+        const emailText = currentProfile.email;
+        const tempInput = document.createElement('textarea');
+        tempInput.value = emailText;
+        document.body.appendChild(tempInput);
+        tempInput.select();
+        try {
+          document.execCommand('copy');
+          showToast(`Correo copiado: ${emailText}`);
+        } catch (err) {
+          showToast('No se pudo copiar automáticamente.', 'red');
+        }
+        document.body.removeChild(tempInput);
+      });
+
+      // Terminal interactiva eventos
+      const terminalForm = document.getElementById('terminal-form');
+      const terminalInput = document.getElementById('terminal-input');
+      terminalForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        executeTerminalCommand(terminalInput.value);
+        terminalInput.value = '';
+      });
+
+      document.querySelectorAll('.quick-cmd').forEach(btn => {
+        btn.addEventListener('click', () => {
+          executeTerminalCommand(btn.dataset.cmd);
+          terminalInput.focus();
+        });
+      });
+
+      // Validación Formulario de Contacto
+      const contactForm = document.getElementById('contact-form');
+      contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const nameInput = document.getElementById('contact-name');
+        const emailInput = document.getElementById('contact-email');
+        const msgInput = document.getElementById('contact-message');
+
+        const errName = document.getElementById('err-name');
+        const errEmail = document.getElementById('err-email');
+        const errMsg = document.getElementById('err-message');
+        const successBox = document.getElementById('contact-success');
+
+        let valid = true;
+        errName.classList.add('hidden');
+        errEmail.classList.add('hidden');
+        errMsg.classList.add('hidden');
+        successBox.classList.add('hidden');
+
+        if (nameInput.value.trim().length < 2) {
+          errName.classList.remove('hidden');
+          valid = false;
+        }
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(emailInput.value.trim())) {
+          errEmail.classList.remove('hidden');
+          valid = false;
+        }
+        if (msgInput.value.trim().length < 10) {
+          errMsg.classList.remove('hidden');
+          valid = false;
+        }
+
+        if (valid) {
+          successBox.classList.remove('hidden');
+          showToast('Mensaje enviado con éxito.');
+          contactForm.reset();
+        } else {
+          showToast('Revisa los campos marcados en el formulario.', 'red');
+        }
+      });
+
+      // Animaciones Reveal al hacer scroll
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+          }
+        });
+      }, { threshold: 0.12 });
+
+      document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    });
+  </script>
+</body>
+</html>
