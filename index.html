@@ -128,11 +128,11 @@
         <a href="#contacto" class="hover:text-cyber-mint transition-colors">Contacto</a>
       </div>
 
-      <!-- Botón Editar Perfil + Menú Móvil -->
+      <!-- Botón Security Toolkit + Menú Móvil -->
       <div class="flex items-center gap-2">
-        <button id="btn-open-editor" type="button" class="px-3 py-1.5 rounded-lg bg-cyber-card hover:bg-slate-800 border border-cyber-mint/40 text-cyber-mint font-mono text-xs flex items-center gap-1.5 transition-all shadow-sm hover:shadow-neon-mint" title="Personalizar datos del portafolio en vivo">
-          <i class="fa-solid fa-user-pen"></i>
-          <span class="hidden sm:inline">Editar Perfil</span>
+        <button id="btn-open-toolkit" type="button" class="px-3 py-1.5 rounded-lg bg-cyber-card hover:bg-slate-800 border border-cyber-mint/40 text-cyber-mint font-mono text-xs flex items-center gap-1.5 transition-all shadow-sm hover:shadow-neon-mint" title="Abrir herramientas criptográficas en cliente">
+          <i class="fa-solid fa-key"></i>
+          <span class="hidden sm:inline">Security Toolkit</span>
         </button>
 
         <button id="mobile-menu-btn" type="button" aria-label="Abrir menú" class="lg:hidden p-2.5 rounded-lg text-slate-300 hover:text-cyber-mint hover:bg-cyber-card border border-transparent hover:border-cyber-border">
@@ -178,7 +178,7 @@
                 // HOLA, SOY
               </p>
               <h1 id="profile-name" class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-tight">
-                ING Renato A. Leroux C.
+                ING. Renato A. Leroux C.
               </h1>
               <h2 id="profile-role" class="text-xl sm:text-2xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-cyber-mint via-cyber-cyan to-sky-400">
                 Especialista en Ciberseguridad | Desarrollo Seguro (Secure by Design) & Docencia Tecnológica
@@ -186,7 +186,7 @@
             </div>
 
             <p id="profile-bio" class="text-slate-400 text-base sm:text-lg max-w-2xl leading-relaxed">
-              Protejo infraestructuras críticas, aplicaciones web y bases de datos combinando mentalidad ofensiva (<span class="text-cyber-red font-mono text-sm">Red Team</span>) con arquitectura resiliente (<span class="text-cyber-cyan font-mono text-sm">Blue Team</span>). Apasionado por la auditoría de sistemas, mitigación de vulnerabilidades OWASP y formación técnica de alto impacto.
+              Protejo infraestructuras críticas, aplicaciones web y gestores de bases de datos empresariales (<span class="text-cyber-mint font-mono text-sm">SQL Server, PostgreSQL, Oracle & MySQL</span>) combinando mentalidad ofensiva (<span class="text-cyber-red font-mono text-sm">Red Team</span>) con arquitectura resiliente (<span class="text-cyber-cyan font-mono text-sm">Blue Team</span>). Especialista en auditoría de sistemas, mitigación OWASP y hardening de datos.
             </p>
 
             <!-- Botones de Acción -->
@@ -237,19 +237,19 @@
                 <div class="space-y-2">
                   <div class="flex justify-between">
                     <span class="text-cyber-cyan">[+] Enfoque Principal:</span>
-                    <span class="text-white text-right">AppSec & Infraestructura</span>
+                    <span class="text-white text-right">AppSec, DB Security & Infra</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span class="text-cyber-cyan">[+] Gestores DB:</span>
+                    <span class="text-white text-right">SQL Server / PostgreSQL / Oracle / MySQL</span>
                   </div>
                   <div class="flex justify-between">
                     <span class="text-cyber-cyan">[+] Metodologías:</span>
                     <span class="text-white text-right">OWASP, PTES, NIST CSF</span>
                   </div>
                   <div class="flex justify-between">
-                    <span class="text-cyber-cyan">[+] Entornos Base:</span>
-                    <span class="text-white text-right">Kali / Parrot / Debian</span>
-                  </div>
-                  <div class="flex justify-between">
                     <span class="text-cyber-cyan">[+] Ubicación:</span>
-                    <span id="profile-location" class="text-white text-right">Remoto / LATAM</span>
+                    <span id="profile-location" class="text-white text-right">Venezuela / Remoto</span>
                   </div>
                 </div>
 
@@ -303,11 +303,11 @@
 
             <div class="p-6 rounded-2xl bg-cyber-card border border-cyber-border hover:border-cyber-cyan/50 transition-all group">
               <div class="w-11 h-11 rounded-xl bg-cyber-cyan/10 border border-cyber-cyan/30 flex items-center justify-center text-cyber-cyan mb-4 group-hover:scale-105 transition-transform">
-                <i class="fa-solid fa-radar text-lg"></i>
+                <i class="fa-solid fa-database text-lg"></i>
               </div>
-              <h3 class="text-lg font-bold text-white mb-2">Blue Team & Hardening</h3>
+              <h3 class="text-lg font-bold text-white mb-2">Seguridad en Bases de Datos</h3>
               <p class="text-sm text-slate-400 leading-relaxed">
-                Fortalecimiento de servidores Linux/Windows, segmentación de red, inspección profunda de paquetes, gestión de reglas de firewall y planes de respaldo con integridad verificada.
+                Hardening de instancias Microsoft SQL Server, PostgreSQL, Oracle Database y MySQL mediante cifrado TDE/InnoDB, Row-Level Security (RLS), enmascaramiento dinámico, auditoría FGA/Enterprise Audit y control de privilegios.
               </p>
             </div>
 
@@ -384,6 +384,9 @@
             <button data-filter="all" class="skill-filter-btn active px-3.5 py-2 rounded-xl text-xs font-mono font-semibold bg-cyber-mint text-cyber-bg transition-all">
               Todas
             </button>
+            <button data-filter="dbsec" class="skill-filter-btn px-3.5 py-2 rounded-xl text-xs font-mono font-semibold bg-cyber-card text-slate-300 border border-cyber-border hover:border-cyber-mint/50 transition-all">
+              Seguridad en Bases de Datos
+            </button>
             <button data-filter="ofensiva" class="skill-filter-btn px-3.5 py-2 rounded-xl text-xs font-mono font-semibold bg-cyber-card text-slate-300 border border-cyber-border hover:border-cyber-red/50 transition-all">
               Seguridad Ofensiva
             </button>
@@ -420,7 +423,10 @@
           <!-- Filtros de Proyectos -->
           <div id="project-filters" class="flex flex-wrap gap-2">
             <button data-category="all" class="proj-filter-btn active px-3.5 py-2 rounded-xl text-xs font-mono font-semibold bg-cyber-cyan text-cyber-bg transition-all">
-              Todos (4)
+              Todos (8)
+            </button>
+            <button data-category="dbsec" class="proj-filter-btn px-3.5 py-2 rounded-xl text-xs font-mono font-semibold bg-cyber-card text-slate-300 border border-cyber-border hover:border-cyber-mint/50 transition-all">
+              DB Security (SQL/PG/Oracle/MySQL)
             </button>
             <button data-category="appsec" class="proj-filter-btn px-3.5 py-2 rounded-xl text-xs font-mono font-semibold bg-cyber-card text-slate-300 border border-cyber-border hover:border-cyber-mint/50 transition-all">
               AppSec / OWASP
@@ -580,6 +586,7 @@
         <div class="flex flex-wrap justify-center gap-2 mb-4">
           <button type="button" data-cmd="help" class="quick-cmd px-3 py-1.5 rounded-lg bg-cyber-card hover:bg-slate-800 border border-cyber-border text-xs font-mono text-cyber-mint transition-colors">help</button>
           <button type="button" data-cmd="whoami" class="quick-cmd px-3 py-1.5 rounded-lg bg-cyber-card hover:bg-slate-800 border border-cyber-border text-xs font-mono text-slate-200 transition-colors">whoami</button>
+          <button type="button" data-cmd="dbsec" class="quick-cmd px-3 py-1.5 rounded-lg bg-cyber-card hover:bg-slate-800 border border-cyber-mint/40 text-xs font-mono text-cyber-mint transition-colors">dbsec</button>
           <button type="button" data-cmd="skills" class="quick-cmd px-3 py-1.5 rounded-lg bg-cyber-card hover:bg-slate-800 border border-cyber-border text-xs font-mono text-slate-200 transition-colors">skills</button>
           <button type="button" data-cmd="projects" class="quick-cmd px-3 py-1.5 rounded-lg bg-cyber-card hover:bg-slate-800 border border-cyber-border text-xs font-mono text-slate-200 transition-colors">projects</button>
           <button type="button" data-cmd="certs" class="quick-cmd px-3 py-1.5 rounded-lg bg-cyber-card hover:bg-slate-800 border border-cyber-border text-xs font-mono text-slate-200 transition-colors">certs</button>
@@ -623,114 +630,96 @@
     </section>
 
     <!-- =========================================================
-         8. SECCIÓN DE CONTACTO
+         8. SECCIÓN DE CONTACTO DIRECTO & FORMULARIO VALIDADO
     ========================================================== -->
     <section id="contacto" class="py-20 border-t border-cyber-border/60 reveal">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
-          
-          <!-- Info directa y Copiado al portapapeles -->
-          <div class="lg:col-span-5 space-y-6">
-            <div>
-              <span class="font-mono text-xs uppercase tracking-widest text-cyber-cyan">06 // COMUNICACIÓN CIFRADA</span>
-              <h2 class="text-3xl sm:text-4xl font-bold text-white mt-1">Iniciemos una Conversación</h2>
-              <p class="text-slate-400 text-sm sm:text-base mt-3 leading-relaxed">
-                ¿Buscas auditar la seguridad de tu aplicación, fortalecer tu infraestructura o coordinar una ponencia técnica? Contáctame directamente por teléfono o correo electrónico.
-              </p>
-            </div>
+        <div class="mb-12">
+          <span class="font-mono text-xs uppercase tracking-widest text-cyber-cyan">06 // CANAL SEGURO</span>
+          <h2 class="text-3xl sm:text-4xl font-bold text-white mt-1">Contacto Directo & Consultoría</h2>
+        </div>
 
-            <!-- Tarjeta Email y Teléfono con botones de acción -->
-            <div class="p-5 rounded-2xl bg-cyber-card border border-cyber-border space-y-4">
-              <div>
-                <div class="text-xs font-mono text-slate-400 uppercase mb-1.5">Correo Electrónico Directo</div>
-                <div class="flex items-center justify-between gap-2 bg-cyber-bg p-3 rounded-xl border border-cyber-border">
-                  <a id="profile-email-link" href="mailto:renato9420@gmail.com" class="font-mono text-xs sm:text-sm text-cyber-mint hover:underline truncate">
-                    <span id="profile-email">renato9420@gmail.com</span>
-                  </a>
-                  <button id="btn-copy-email" type="button" class="shrink-0 px-3 py-1.5 rounded-lg bg-cyber-mint/15 hover:bg-cyber-mint/25 text-cyber-mint font-mono text-xs flex items-center gap-1.5 transition-colors">
-                    <i class="fa-regular fa-copy"></i>
-                    <span>Copiar</span>
-                  </button>
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+          <!-- Tarjetas de Contacto Directo -->
+          <div class="lg:col-span-5 space-y-5">
+            <div class="p-6 rounded-2xl bg-cyber-card border border-cyber-border space-y-5">
+              <h3 class="font-mono text-sm text-cyber-mint uppercase tracking-wider">// Canales Oficiales</h3>
+
+              <!-- Teléfono -->
+              <div class="p-4 rounded-xl bg-cyber-bg border border-cyber-border flex items-center justify-between gap-3">
+                <div class="flex items-center gap-3.5 min-w-0">
+                  <div class="w-10 h-10 rounded-lg bg-cyber-cyan/10 border border-cyber-cyan/30 flex items-center justify-center text-cyber-cyan shrink-0">
+                    <i class="fa-solid fa-phone"></i>
+                  </div>
+                  <div class="min-w-0">
+                    <div class="text-xs font-mono text-slate-400">Teléfono Directo</div>
+                    <a href="tel:04249228072" class="text-sm sm:text-base font-mono font-semibold text-white hover:text-cyber-cyan transition-colors truncate block">
+                      0424-9228072
+                    </a>
+                  </div>
                 </div>
+                <button id="btn-copy-phone" type="button" title="Copiar teléfono" class="p-2.5 rounded-lg bg-cyber-card hover:bg-slate-800 border border-cyber-border text-slate-300 hover:text-cyber-cyan transition-colors shrink-0">
+                  <i class="fa-regular fa-copy"></i>
+                </button>
               </div>
 
-              <div>
-                <div class="text-xs font-mono text-slate-400 uppercase mb-1.5">Teléfono / WhatsApp Directo</div>
-                <div class="flex items-center justify-between gap-2 bg-cyber-bg p-3 rounded-xl border border-cyber-border">
-                  <a id="profile-phone-link" href="tel:+584249228072" class="font-mono text-xs sm:text-sm text-cyber-cyan hover:underline flex items-center gap-2 truncate">
-                    <i class="fa-solid fa-phone text-xs"></i>
-                    <span id="profile-phone">0424-9228072</span>
-                  </a>
-                  <button id="btn-copy-phone" type="button" class="shrink-0 px-3 py-1.5 rounded-lg bg-cyber-cyan/15 hover:bg-cyber-cyan/25 text-cyber-cyan font-mono text-xs flex items-center gap-1.5 transition-colors">
-                    <i class="fa-regular fa-copy"></i>
-                    <span>Copiar</span>
-                  </button>
+              <!-- Correo Electrónico -->
+              <div class="p-4 rounded-xl bg-cyber-bg border border-cyber-border flex items-center justify-between gap-3">
+                <div class="flex items-center gap-3.5 min-w-0">
+                  <div class="w-10 h-10 rounded-lg bg-cyber-mint/10 border border-cyber-mint/30 flex items-center justify-center text-cyber-mint shrink-0">
+                    <i class="fa-solid fa-envelope"></i>
+                  </div>
+                  <div class="min-w-0">
+                    <div class="text-xs font-mono text-slate-400">Correo Electrónico</div>
+                    <a href="mailto:renato9420@gmail.com" class="text-sm sm:text-base font-mono font-semibold text-white hover:text-cyber-mint transition-colors truncate block">
+                      renato9420@gmail.com
+                    </a>
+                  </div>
                 </div>
+                <button id="btn-copy-email" type="button" title="Copiar correo" class="p-2.5 rounded-lg bg-cyber-card hover:bg-slate-800 border border-cyber-border text-slate-300 hover:text-cyber-mint transition-colors shrink-0">
+                  <i class="fa-regular fa-copy"></i>
+                </button>
               </div>
 
-              <div class="flex items-center gap-2 text-xs text-slate-400 font-mono pt-1">
-                <i class="fa-solid fa-key text-cyber-cyan"></i>
-                <span>PGP Fingerprint: <span class="text-slate-300">4F9A 88C1 0E2B 991D</span></span>
-              </div>
-            </div>
-
-            <!-- Disponibilidad -->
-            <div class="p-5 rounded-2xl bg-cyber-card border border-cyber-border flex items-center gap-4">
-              <div class="w-3 h-3 rounded-full bg-emerald-400 animate-pulse shrink-0"></div>
-              <div class="text-sm text-slate-300">
-                <strong class="text-white">Disponible para:</strong> Consultoría AppSec, Auditorías de Seguridad, Desarrollo Seguro y Formación Técnica.
+              <!-- Huella PGP -->
+              <div class="p-4 rounded-xl bg-cyber-bg/60 border border-cyber-border/70 font-mono text-xs text-slate-400 space-y-1">
+                <div class="text-cyber-mint font-semibold"><i class="fa-solid fa-key mr-1.5"></i>PGP Public Fingerprint:</div>
+                <div class="text-slate-300">4F9A 88C1 0E2B 991D • TLS 1.3 Verified</div>
               </div>
             </div>
           </div>
 
-          <!-- Formulario de Contacto Funcional -->
+          <!-- Formulario de Contacto -->
           <div class="lg:col-span-7">
-            <form id="contact-form" novalidate class="p-6 sm:p-8 rounded-2xl bg-cyber-card border border-cyber-border space-y-5 shadow-xl">
+            <form id="contact-form" novalidate class="p-6 sm:p-8 rounded-2xl bg-cyber-card border border-cyber-border space-y-5">
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <div>
-                  <label for="contact-name" class="block font-mono text-xs text-slate-300 mb-2">Nombre / Organización *</label>
-                  <input id="contact-name" type="text" required placeholder="Ej. Ana Martínez - TechCorp" class="w-full px-4 py-3 rounded-xl bg-cyber-bg border border-cyber-border focus:border-cyber-mint focus:outline-none text-sm text-white placeholder:text-slate-600 transition-colors" />
-                  <p id="err-name" class="hidden text-xs text-cyber-red font-mono mt-1">Por favor ingresa tu nombre.</p>
+                  <label for="contact-name" class="block text-xs font-mono text-slate-300 mb-2">Nombre / Organización *</label>
+                  <input id="contact-name" type="text" placeholder="Ej. Equipo de Infraestructura" class="w-full px-4 py-3 rounded-xl bg-cyber-bg border border-cyber-border text-sm text-white placeholder:text-slate-600 focus:border-cyber-mint focus:outline-none" />
+                  <p id="err-name" class="hidden text-xs font-mono text-cyber-red mt-1.5">Ingresa un nombre válido (mínimo 2 caracteres).</p>
                 </div>
 
                 <div>
-                  <label for="contact-email" class="block font-mono text-xs text-slate-300 mb-2">Correo Electrónico *</label>
-                  <input id="contact-email" type="email" required placeholder="ana@empresa.com" class="w-full px-4 py-3 rounded-xl bg-cyber-bg border border-cyber-border focus:border-cyber-mint focus:outline-none text-sm text-white placeholder:text-slate-600 transition-colors" />
-                  <p id="err-email" class="hidden text-xs text-cyber-red font-mono mt-1">Ingresa un correo electrónico válido.</p>
+                  <label for="contact-email" class="block text-xs font-mono text-slate-300 mb-2">Correo Electrónico *</label>
+                  <input id="contact-email" type="email" placeholder="nombre@dominio.com" class="w-full px-4 py-3 rounded-xl bg-cyber-bg border border-cyber-border text-sm text-white placeholder:text-slate-600 focus:border-cyber-mint focus:outline-none" />
+                  <p id="err-email" class="hidden text-xs font-mono text-cyber-red mt-1.5">Ingresa un correo electrónico válido.</p>
                 </div>
               </div>
 
               <div>
-                <label for="contact-subject" class="block font-mono text-xs text-slate-300 mb-2">Asunto / Tipo de Requerimiento</label>
-                <select id="contact-subject" class="w-full px-4 py-3 rounded-xl bg-cyber-bg border border-cyber-border focus:border-cyber-mint focus:outline-none text-sm text-white transition-colors">
-                  <option value="auditoria">Auditoría de Seguridad / Pentesting Web</option>
-                  <option value="secure-dev">Consultoría Desarrollo Seguro (Secure by Design)</option>
-                  <option value="hardening">Hardening de Servidores & Bases de Datos</option>
-                  <option value="ponencia">Taller / Ponencia / Docencia Tecnológica</option>
-                  <option value="otro">Otro asunto profesional</option>
-                </select>
+                <label for="contact-message" class="block text-xs font-mono text-slate-300 mb-2">Detalles del Proyecto, Auditoría o Consulta *</label>
+                <textarea id="contact-message" rows="4" placeholder="Describe el alcance (Auditoría OWASP, Hardening SQL Server / PostgreSQL / Oracle, Capacitación)..." class="w-full px-4 py-3 rounded-xl bg-cyber-bg border border-cyber-border text-sm text-white placeholder:text-slate-600 focus:border-cyber-mint focus:outline-none"></textarea>
+                <p id="err-message" class="hidden text-xs font-mono text-cyber-red mt-1.5">El mensaje debe contener al menos 10 caracteres.</p>
               </div>
 
-              <div>
-                <label for="contact-message" class="block font-mono text-xs text-slate-300 mb-2">Mensaje *</label>
-                <textarea id="contact-message" rows="4" required placeholder="Describe brevemente el alcance de tu proyecto, consulta o propuesta..." class="w-full px-4 py-3 rounded-xl bg-cyber-bg border border-cyber-border focus:border-cyber-mint focus:outline-none text-sm text-white placeholder:text-slate-600 transition-colors"></textarea>
-                <p id="err-message" class="hidden text-xs text-cyber-red font-mono mt-1">El mensaje debe tener al menos 10 caracteres.</p>
+              <div id="contact-success" class="hidden p-4 rounded-xl bg-emerald-500/15 border border-emerald-500/40 text-emerald-300 font-mono text-xs">
+                <i class="fa-solid fa-circle-check mr-1.5"></i> Transmisión completada. Responderé a la brevedad posible.
               </div>
 
-              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-2">
-                <span class="text-xs font-mono text-slate-400">
-                  <i class="fa-solid fa-lock text-cyber-mint mr-1"></i> Validación local sanitizada
-                </span>
-                <button type="submit" class="px-6 py-3.5 rounded-xl bg-gradient-to-r from-cyber-mint to-cyber-cyan text-cyber-bg font-bold text-sm flex items-center justify-center gap-2 hover:opacity-95 transition-all shadow-neon-mint">
-                  <i class="fa-solid fa-paper-plane"></i>
-                  <span>Transmitir Mensaje</span>
-                </button>
-              </div>
-
-              <!-- Confirmación visual inline -->
-              <div id="contact-success" class="hidden p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/40 text-emerald-300 text-sm font-mono">
-                <i class="fa-solid fa-circle-check mr-2"></i> [200 OK] Mensaje transmitido correctamente. Responderé a la brevedad.
-              </div>
+              <button type="submit" class="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-gradient-to-r from-cyber-mint to-cyber-cyan text-cyber-bg font-bold text-sm flex items-center justify-center gap-2 hover:opacity-95 transition-all shadow-neon-mint">
+                <i class="fa-solid fa-paper-plane"></i>
+                <span>Enviar Mensaje Seguro</span>
+              </button>
             </form>
           </div>
         </div>
@@ -739,132 +728,144 @@
   </main>
 
   <!-- =========================================================
-       FOOTER
+       PIE DE PÁGINA
   ========================================================== -->
-  <footer class="border-t border-cyber-border bg-cyber-card/50 py-8">
+  <footer class="border-t border-cyber-border/80 bg-cyber-card/60 py-8">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-slate-400">
       <div>
-        &copy; <span id="current-year"></span> <span id="footer-name" class="text-white">ING Renato A. Leroux C.</span> — Arquitectura & Ciberseguridad.
+        &copy; <span id="current-year"></span> <span class="text-white font-semibold">ING Renato A. Leroux C.</span> — Todos los derechos reservados.
       </div>
       <div class="flex items-center gap-4">
-        <span class="text-cyber-mint"><i class="fa-solid fa-shield-check mr-1"></i>Secure by Design</span>
-        <span>|</span>
-        <a href="#inicio" class="hover:text-white transition-colors">Volver arriba &uarr;</a>
+        <span class="text-cyber-mint"><i class="fa-solid fa-lock mr-1"></i>Secure by Design</span>
+        <span>0424-9228072</span>
       </div>
     </div>
   </footer>
 
   <!-- =========================================================
-       MODAL 1: DETALLES TÉCNICOS DE PROYECTO / LABORATORIO
+       MODAL 1: DETALLE TÉCNICO DE PROYECTO / LABORATORIO
   ========================================================== -->
   <div id="project-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
-    <div class="relative w-full max-w-3xl max-h-[90vh] overflow-y-auto rounded-2xl bg-cyber-card border border-cyber-mint/40 shadow-2xl p-6 sm:p-8 space-y-6">
+    <div class="relative w-full max-w-3xl max-h-[90vh] overflow-y-auto rounded-2xl bg-cyber-card border border-cyber-cyan/50 shadow-2xl p-6 sm:p-8 space-y-5">
       <div class="flex items-start justify-between gap-4 border-b border-cyber-border pb-4">
         <div>
-          <span id="modal-proj-badge" class="font-mono text-xs px-2.5 py-1 rounded bg-cyber-mint/15 text-cyber-mint">APPSEC LAB</span>
-          <h3 id="modal-proj-title" class="text-xl sm:text-2xl font-bold text-white mt-2">Título del Proyecto</h3>
+          <span id="modal-proj-badge" class="inline-block px-2.5 py-1 rounded text-xs font-mono font-semibold border mb-2"></span>
+          <h3 id="modal-proj-title" class="text-xl sm:text-2xl font-bold text-white"></h3>
         </div>
-        <button id="btn-close-proj-modal" type="button" aria-label="Cerrar modal" class="p-2 rounded-lg bg-cyber-bg hover:bg-slate-800 text-slate-400 hover:text-white border border-cyber-border">
-          <i class="fa-solid fa-xmark text-lg"></i>
-        </button>
-      </div>
-
-      <div class="space-y-4 text-sm text-slate-300 leading-relaxed">
-        <div>
-          <h4 class="font-mono text-xs uppercase text-cyber-cyan mb-1">// Descripción & Escenario</h4>
-          <p id="modal-proj-desc"></p>
-        </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div class="p-4 rounded-xl bg-cyber-bg border border-cyber-border">
-            <h4 class="font-mono text-xs uppercase text-cyber-red mb-1.5"><i class="fa-solid fa-triangle-exclamation mr-1"></i>Vector / Riesgo Analizado</h4>
-            <p id="modal-proj-risk" class="text-xs text-slate-400"></p>
-          </div>
-          <div class="p-4 rounded-xl bg-cyber-bg border border-cyber-border">
-            <h4 class="font-mono text-xs uppercase text-cyber-mint mb-1.5"><i class="fa-solid fa-shield-halved mr-1"></i>Arquitectura & Mitigación</h4>
-            <p id="modal-proj-mitigation" class="text-xs text-slate-400"></p>
-          </div>
-        </div>
-
-        <div>
-          <h4 class="font-mono text-xs uppercase text-amber-400 mb-2">// Snippet Técnico / Configuración Segura</h4>
-          <pre class="p-4 rounded-xl bg-[#060911] border border-cyber-border overflow-x-auto font-mono text-xs text-emerald-300"><code id="modal-proj-code"></code></pre>
-        </div>
-
-        <div>
-          <h4 class="font-mono text-xs uppercase text-slate-400 mb-2">// Stack & Herramientas Utilizadas</h4>
-          <div id="modal-proj-tools" class="flex flex-wrap gap-2"></div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- =========================================================
-       MODAL 2: EDITOR DE PERFIL / MODO DEMO EN VIVO
-  ========================================================== -->
-  <div id="editor-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
-    <div class="relative w-full max-w-xl max-h-[90vh] overflow-y-auto rounded-2xl bg-cyber-card border border-cyber-cyan/50 shadow-2xl p-6 sm:p-7 space-y-5">
-      <div class="flex items-center justify-between border-b border-cyber-border pb-3">
-        <div class="flex items-center gap-2">
-          <i class="fa-solid fa-sliders text-cyber-cyan"></i>
-          <h3 class="text-lg font-bold text-white">Personalizar Portafolio (Modo Demo)</h3>
-        </div>
-        <button id="btn-close-editor" type="button" class="p-2 rounded-lg bg-cyber-bg text-slate-400 hover:text-white border border-cyber-border">
+        <button id="btn-close-proj-modal" type="button" aria-label="Cerrar modal" class="p-2 rounded-lg bg-cyber-bg text-slate-400 hover:text-white border border-cyber-border shrink-0">
           <i class="fa-solid fa-xmark"></i>
         </button>
       </div>
 
-      <p class="text-xs text-slate-400">
-        Edita los campos para adaptar este portafolio con tus propios datos en tiempo real.
-      </p>
+      <p id="modal-proj-summary" class="text-sm text-slate-300 leading-relaxed"></p>
 
-      <form id="editor-form" class="space-y-4 text-sm">
-        <div>
-          <label class="block font-mono text-xs text-slate-300 mb-1">Nombre / Título Profesional</label>
-          <input id="edit-name" type="text" class="w-full px-3.5 py-2.5 rounded-xl bg-cyber-bg border border-cyber-border text-white focus:border-cyber-cyan focus:outline-none" />
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="p-4 rounded-xl bg-cyber-red/10 border border-cyber-red/30">
+          <h4 class="font-mono text-xs font-bold text-cyber-red uppercase mb-1.5">
+            <i class="fa-solid fa-triangle-exclamation mr-1"></i>Vector de Riesgo
+          </h4>
+          <p id="modal-proj-risk" class="text-xs sm:text-sm text-slate-300 leading-relaxed"></p>
         </div>
-        <div>
-          <label class="block font-mono text-xs text-slate-300 mb-1">Especialidad / Subtítulo</label>
-          <input id="edit-role" type="text" class="w-full px-3.5 py-2.5 rounded-xl bg-cyber-bg border border-cyber-border text-white focus:border-cyber-cyan focus:outline-none" />
+        <div class="p-4 rounded-xl bg-cyber-mint/10 border border-cyber-mint/30">
+          <h4 class="font-mono text-xs font-bold text-cyber-mint uppercase mb-1.5">
+            <i class="fa-solid fa-shield-check mr-1"></i>Control & Remediación
+          </h4>
+          <p id="modal-proj-mitigation" class="text-xs sm:text-sm text-slate-300 leading-relaxed"></p>
         </div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          <div>
-            <label class="block font-mono text-xs text-slate-300 mb-1">Correo Electrónico</label>
-            <input id="edit-email" type="email" class="w-full px-3.5 py-2.5 rounded-xl bg-cyber-bg border border-cyber-border text-white focus:border-cyber-cyan focus:outline-none" />
+      </div>
+
+      <div>
+        <div class="flex items-center justify-between text-xs font-mono text-slate-400 mb-2">
+          <span>// Snippet de Implementación / Hardening</span>
+          <button type="button" id="modal-copy-code" class="text-cyber-cyan hover:underline">Copiar Snippet</button>
+        </div>
+        <pre class="p-4 rounded-xl bg-[#060911] border border-cyber-border overflow-x-auto text-xs font-mono text-cyber-mint leading-relaxed"><code id="modal-proj-code"></code></pre>
+      </div>
+
+      <div id="modal-proj-tools" class="flex flex-wrap gap-2 pt-1"></div>
+    </div>
+  </div>
+
+  <!-- =========================================================
+       MODAL 2: SECURITY TOOLKIT (GENERADOR CRIPTOGRÁFICO Y HASHES)
+  ========================================================== -->
+  <div id="toolkit-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
+    <div class="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-2xl bg-cyber-card border border-cyber-mint/50 shadow-2xl p-6 sm:p-7 space-y-6">
+      <div class="flex items-center justify-between border-b border-cyber-border pb-3">
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-lg bg-cyber-mint/15 border border-cyber-mint/40 flex items-center justify-center text-cyber-mint">
+            <i class="fa-solid fa-vault"></i>
           </div>
           <div>
-            <label class="block font-mono text-xs text-slate-300 mb-1">Teléfono / Datos de Contacto</label>
-            <input id="edit-phone" type="text" class="w-full px-3.5 py-2.5 rounded-xl bg-cyber-bg border border-cyber-border text-white focus:border-cyber-cyan focus:outline-none" />
+            <h3 class="text-lg font-bold text-white">Security Toolkit (Client-Side Crypto)</h3>
+            <p class="text-[11px] font-mono text-cyber-cyan">Procesamiento 100% local vía Web Crypto API</p>
           </div>
         </div>
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-          <div>
-            <label class="block font-mono text-xs text-slate-300 mb-1">Ubicación</label>
-            <input id="edit-location" type="text" class="w-full px-3.5 py-2.5 rounded-xl bg-cyber-bg border border-cyber-border text-white focus:border-cyber-cyan focus:outline-none" />
-          </div>
-          <div>
-            <label class="block font-mono text-xs text-slate-300 mb-1">URL GitHub</label>
-            <input id="edit-github" type="url" class="w-full px-3.5 py-2.5 rounded-xl bg-cyber-bg border border-cyber-border text-white focus:border-cyber-cyan focus:outline-none" />
-          </div>
-          <div>
-            <label class="block font-mono text-xs text-slate-300 mb-1">URL LinkedIn</label>
-            <input id="edit-linkedin" type="url" class="w-full px-3.5 py-2.5 rounded-xl bg-cyber-bg border border-cyber-border text-white focus:border-cyber-cyan focus:outline-none" />
-          </div>
-        </div>
-        <div>
-          <label class="block font-mono text-xs text-slate-300 mb-1">Resumen Profesional</label>
-          <textarea id="edit-bio" rows="3" class="w-full px-3.5 py-2.5 rounded-xl bg-cyber-bg border border-cyber-border text-white focus:border-cyber-cyan focus:outline-none"></textarea>
+        <button id="btn-close-toolkit" type="button" aria-label="Cerrar toolkit" class="p-2 rounded-lg bg-cyber-bg text-slate-400 hover:text-white border border-cyber-border">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <!-- Herramienta 1: Generador de Contraseñas de Alta Entropía -->
+      <div class="p-4 sm:p-5 rounded-xl bg-cyber-bg border border-cyber-border space-y-4">
+        <div class="flex items-center justify-between">
+          <span class="font-mono text-xs uppercase text-cyber-mint font-semibold">
+            <i class="fa-solid fa-key mr-1.5"></i>1. Generador de Claves Seguras (CSPRNG)
+          </span>
+          <span id="tk-entropy-badge" class="font-mono text-[11px] px-2 py-0.5 rounded bg-emerald-500/15 text-emerald-400">Entropía: ~128 bits</span>
         </div>
 
-        <div class="flex items-center justify-end gap-3 pt-2">
-          <button type="button" id="btn-reset-profile" class="px-4 py-2 rounded-xl bg-cyber-bg border border-cyber-border text-xs font-mono text-slate-300 hover:text-white">
-            Restaurar Default
+        <div class="flex items-center gap-2">
+          <input id="tk-pass-output" type="text" readonly class="w-full px-3.5 py-2.5 rounded-xl bg-[#060911] border border-cyber-border font-mono text-xs sm:text-sm text-cyber-mint focus:outline-none" />
+          <button id="tk-btn-regen" type="button" title="Regenerar clave" class="p-2.5 rounded-xl bg-cyber-card hover:bg-slate-800 border border-cyber-border text-slate-200 hover:text-cyber-cyan transition-colors">
+            <i class="fa-solid fa-rotate"></i>
           </button>
-          <button type="submit" class="px-5 py-2.5 rounded-xl bg-cyber-mint text-cyber-bg font-bold text-xs font-mono hover:opacity-90">
-            Aplicar Cambios
+          <button id="tk-btn-copy-pass" type="button" class="px-3.5 py-2.5 rounded-xl bg-cyber-mint text-cyber-bg font-mono text-xs font-bold hover:opacity-90 transition-opacity shrink-0">
+            Copiar
           </button>
         </div>
-      </form>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs font-mono text-slate-300">
+          <div class="flex items-center justify-between bg-cyber-card px-3 py-2 rounded-lg border border-cyber-border">
+            <label for="tk-pass-len">Longitud: <span id="tk-len-val" class="text-cyber-cyan font-bold">20</span></label>
+            <input id="tk-pass-len" type="range" min="12" max="40" value="20" class="w-28 accent-[#00f5d4]" />
+          </div>
+          <label class="flex items-center justify-between bg-cyber-card px-3 py-2 rounded-lg border border-cyber-border cursor-pointer">
+            <span>Símbolos Especiales (!@#$%)</span>
+            <input id="tk-pass-symbols" type="checkbox" checked class="accent-[#00f5d4] w-4 h-4" />
+          </label>
+        </div>
+      </div>
+
+      <!-- Herramienta 2: Calculadora de Integridad SHA-256 / SHA-512 -->
+      <div class="p-4 sm:p-5 rounded-xl bg-cyber-bg border border-cyber-border space-y-3">
+        <div class="font-mono text-xs uppercase text-cyber-cyan font-semibold">
+          <i class="fa-solid fa-fingerprint mr-1.5"></i>2. Verificador de Integridad & Hashing (SHA-256 / SHA-512)
+        </div>
+        <input id="tk-hash-input" type="text" placeholder="Escribe una cadena, token o payload para calcular su digest..." class="w-full px-3.5 py-2.5 rounded-xl bg-cyber-card border border-cyber-border text-xs sm:text-sm text-white placeholder:text-slate-600 focus:border-cyber-cyan focus:outline-none" />
+        
+        <div class="space-y-2 font-mono text-[11px]">
+          <div>
+            <div class="flex items-center justify-between text-slate-400 mb-1">
+              <span>SHA-256 Digest:</span>
+              <button type="button" id="tk-copy-sha256" class="text-cyber-mint hover:underline">Copiar SHA-256</button>
+            </div>
+            <div id="tk-sha256-out" class="p-2.5 rounded-lg bg-[#060911] border border-cyber-border text-slate-300 break-all select-all">
+              e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+            </div>
+          </div>
+
+          <div>
+            <div class="flex items-center justify-between text-slate-400 mb-1">
+              <span>SHA-512 Digest:</span>
+              <button type="button" id="tk-copy-sha512" class="text-cyber-cyan hover:underline">Copiar SHA-512</button>
+            </div>
+            <div id="tk-sha512-out" class="p-2.5 rounded-lg bg-[#060911] border border-cyber-border text-slate-400 break-all select-all text-[10px]">
+              cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -873,14 +874,31 @@
   ========================================================== -->
   <script>
     // ---------------------------------------------------------
-    // 1. ESTADO DEL PERFIL (Editable en vivo)
+    // 0. UTILIDAD DE NOTIFICACIONES TOAST (SIN ALERT)
     // ---------------------------------------------------------
-    const defaultProfile = {
+    function showToast(message, variant = 'mint') {
+      const container = document.getElementById('toast-container');
+      if (!container) return;
+      const toast = document.createElement('div');
+      const borderClass = variant === 'red' ? 'border-cyber-red text-cyber-red' : 'border-cyber-mint text-cyber-mint';
+      toast.className = `pointer-events-auto px-4 py-3 rounded-xl bg-cyber-card/95 backdrop-blur-md border ${borderClass} font-mono text-xs shadow-xl transition-all duration-300`;
+      toast.innerHTML = `<i class="fa-solid ${variant === 'red' ? 'fa-circle-exclamation' : 'fa-circle-check'} mr-2"></i>${escapeHTML(message)}`;
+      container.appendChild(toast);
+      setTimeout(() => {
+        toast.style.opacity = '0';
+        setTimeout(() => toast.remove(), 300);
+      }, 3000);
+    }
+
+    // ---------------------------------------------------------
+    // 1. DATOS OFICIALES DEL PERFIL
+    // ---------------------------------------------------------
+    const currentProfile = {
       name: "ING Renato A. Leroux C.",
       handle: "rleroux",
       promptUser: "renato@sec-lab",
       role: "Especialista en Ciberseguridad | Desarrollo Seguro (Secure by Design) & Docencia Tecnológica",
-      bio: "Protejo infraestructuras críticas, aplicaciones web y bases de datos combinando mentalidad ofensiva (Red Team) con arquitectura resiliente (Blue Team). Apasionado por la auditoría de sistemas, mitigación de vulnerabilidades OWASP y formación técnica de alto impacto.",
+      bio: "Protejo infraestructuras críticas, aplicaciones web y gestores de bases de datos empresariales (SQL Server, PostgreSQL, Oracle & MySQL) combinando mentalidad ofensiva (Red Team) con arquitectura resiliente (Blue Team). Especialista en auditoría de sistemas, mitigación OWASP y hardening de datos.",
       email: "renato9420@gmail.com",
       phone: "0424-9228072",
       location: "Venezuela / Remoto",
@@ -888,12 +906,42 @@
       linkedin: "https://linkedin.com"
     };
 
-    let currentProfile = { ...defaultProfile };
-
     // ---------------------------------------------------------
     // 2. BASE DE DATOS DE HABILIDADES TÉCNICAS
     // ---------------------------------------------------------
     const skillsData = [
+      {
+        name: "Microsoft SQL Server Security",
+        category: "dbsec",
+        catLabel: "Seguridad en Bases de Datos",
+        level: 95,
+        color: "bg-cyber-mint",
+        tags: ["TDE", "Row-Level Security", "Dynamic Data Masking", "SQL Audit", "xp_cmdshell Hardening"]
+      },
+      {
+        name: "PostgreSQL Hardening & Security",
+        category: "dbsec",
+        catLabel: "Seguridad en Bases de Datos",
+        level: 94,
+        color: "bg-cyber-cyan",
+        tags: ["pg_hba.conf", "SCRAM-SHA-256", "RLS Policies", "pgAudit", "SSL/TLS Transit"]
+      },
+      {
+        name: "Oracle Database Security",
+        category: "dbsec",
+        catLabel: "Seguridad en Bases de Datos",
+        level: 91,
+        color: "bg-amber-400",
+        tags: ["Oracle TDE", "Database Vault", "Virtual Private DB (VPD)", "Fine-Grained Auditing", "TNS Listener"]
+      },
+      {
+        name: "MySQL Hardening & Data Protection",
+        category: "dbsec",
+        catLabel: "Seguridad en Bases de Datos",
+        level: 95,
+        color: "bg-cyber-mint",
+        tags: ["caching_sha2_password", "InnoDB TDE", "local_infile=0", "TLS 1.3", "Least Privilege RBAC"]
+      },
       {
         name: "OWASP Top 10 & AppSec Auditing",
         category: "ofensiva",
@@ -919,12 +967,12 @@
         tags: ["Wireshark", "TCP/IP", "Firewall Rules", "IDS/IPS"]
       },
       {
-        name: "Hardening de Servidores & BD",
+        name: "Hardening de Servidores Linux",
         category: "defensiva",
         catLabel: "Blue Team & Redes",
         level: 95,
         color: "bg-cyber-cyan",
-        tags: ["Linux Hardening", "SSH", "MySQL", "SQL Server", "Backups"]
+        tags: ["Linux Hardening", "SSH Ed25519", "Fail2Ban", "Backups GPG"]
       },
       {
         name: "Arquitectura Secure by Design",
@@ -950,6 +998,102 @@
     const projectsData = [
       {
         id: 1,
+        title: "Hardening, TDE y Enmascaramiento Dinámico en Microsoft SQL Server",
+        category: "dbsec",
+        badge: "SQL SERVER SECURITY",
+        badgeColor: "text-cyber-mint bg-cyber-mint/10 border-cyber-mint/30",
+        summary: "Bastionado de instancias SQL Server empresariales eliminando superficies de ejecución remota (xp_cmdshell), cifrando datos en reposo mediante TDE y aplicando Row-Level Security y Dynamic Data Masking.",
+        risk: "Ejecución de comandos del sistema operativo mediante xp_cmdshell habilitado, exposición de datos sensibles (PII/tarjetas) a analistas sin privilegios y backups sin cifrar.",
+        mitigation: "Deshabilitación estricta de xp_cmdshell y OLE Automation, cifrado Transparent Data Encryption (TDE) con certificados respaldados, Dynamic Data Masking y auditoría SQL Server Audit.",
+        code: `-- 1. Deshabilitar superficie de ataque xp_cmdshell en SQL Server
+EXEC sp_configure 'show advanced options', 1; RECONFIGURE;
+EXEC sp_configure 'xp_cmdshell', 0; RECONFIGURE;
+EXEC sp_configure 'Ole Automation Procedures', 0; RECONFIGURE;
+
+-- 2. Dynamic Data Masking (DDM) sobre columnas confidenciales
+ALTER TABLE Clientes
+ALTER COLUMN DocumentoIdentidad ADD MASKED WITH (FUNCTION = 'partial(2,"XXXXXXX",2)');
+
+-- 3. Habilitar Transparent Data Encryption (TDE)
+USE ProdDB;
+CREATE DATABASE ENCRYPTION KEY WITH ALGORITHM = AES_256 ENCRYPTION BY SERVER CERTIFICATE Cert_TDE_Prod;
+ALTER DATABASE ProdDB SET ENCRYPTION ON;`,
+        tools: ["MS SQL Server", "T-SQL", "TDE AES-256", "Dynamic Data Masking", "RLS", "SQL Audit"]
+      },
+      {
+        id: 2,
+        title: "Blindaje de PostgreSQL en Producción (SCRAM-SHA-256, RLS & pgAudit)",
+        category: "dbsec",
+        badge: "POSTGRESQL HARDENING",
+        badgeColor: "text-cyber-cyan bg-cyber-cyan/10 border-cyber-cyan/30",
+        summary: "Aseguramiento perimetral e interno de clústeres PostgreSQL mediante autenticación SCRAM-SHA-256 en pg_hba.conf, cifrado TLS obligatorio, aislamiento de filas con RLS y trazabilidad forense con pgAudit.",
+        risk: "Autenticación heredada con hashes MD5 vulnerables, conexiones en texto plano dentro de la red interna y acceso transversal entre registros de distintos departamentos.",
+        mitigation: "Migración a password_encryption = scram-sha-256, reglas hostssl estrictas en pg_hba.conf, políticas Row-Level Security (RLS) vinculadas a current_user y logging DDL/DML con pgAudit.",
+        code: `-- /etc/postgresql/16/main/pg_hba.conf (Solo conexiones cifradas TLS + SCRAM)
+# TYPE  DATABASE        USER            ADDRESS                 METHOD
+hostssl prod_finance    app_backend     10.20.30.0/24           scram-sha-256
+host    all             all             0.0.0.0/0               reject
+
+-- Política Row-Level Security (RLS) en PostgreSQL
+ALTER TABLE expedientes_medicos ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY aislamiento_departamento ON expedientes_medicos
+    FOR ALL
+    USING (departamento_owner = current_user);`,
+        tools: ["PostgreSQL", "pg_hba.conf", "SCRAM-SHA-256", "Row-Level Security", "pgAudit", "TLS 1.3"]
+      },
+      {
+        id: 3,
+        title: "Control de Acceso Granular y Auditoría en Oracle Database",
+        category: "dbsec",
+        badge: "ORACLE DB SECURITY",
+        badgeColor: "text-amber-400 bg-amber-400/10 border-amber-400/30",
+        summary: "Implementación de defensa en profundidad sobre Oracle Database usando Virtual Private Database (VPD), Fine-Grained Auditing (FGA), perfiles de contraseñas robustos y protección del TNS Listener.",
+        risk: "Consultas no autorizadas sobre tablas críticas sin registro de auditoría, secuestro de registro remoto en Oracle TNS Listener y cuentas con privilegios DBA excesivos.",
+        mitigation: "Políticas VPD mediante DBMS_RLS, alertas de auditoría granular con DBMS_FGA sobre accesos a datos sensibles, restricción VALID_NODE_CHECKING en sqlnet.ora y principio de mínimo privilegio.",
+        code: `-- Fine-Grained Auditing (FGA) en Oracle Database para monitorear accesos sensibles
+BEGIN
+  DBMS_FGA.ADD_POLICY(
+    object_schema   => 'FINANZAS',
+    object_name     => 'CUENTAS_BANCARIAS',
+    policy_name     => 'AUD_ACCESO_SALDOS_ALTOS',
+    audit_condition => 'SALDO > 50000',
+    audit_column    => 'NUMERO_CUENTA, SALDO',
+    statement_types => 'SELECT, UPDATE',
+    enable          => TRUE
+  );
+END;
+/
+-- Hardening en sqlnet.ora (Restricción de nodos autorizados al TNS Listener)
+TCP.VALIDNODE_CHECKING = YES
+TCP.INVITED_NODES = (10.10.5.10, 10.10.5.11)`,
+        tools: ["Oracle Database", "PL/SQL", "Oracle VPD", "DBMS_FGA", "TNS Listener", "Database Vault"]
+      },
+      {
+        id: 4,
+        title: "Hardening Integral de MySQL 8 (caching_sha2, TLS & InnoDB TDE)",
+        category: "dbsec",
+        badge: "MYSQL SECURITY",
+        badgeColor: "text-cyber-mint bg-cyber-mint/10 border-cyber-mint/30",
+        summary: "Bastionado de servidores MySQL en producción mediante deshabilitación de lectura de archivos locales (local_infile=0), autenticación fuerte caching_sha2_password, conexiones cifradas TLS 1.3 y cifrado de tablespaces InnoDB.",
+        risk: "Lectura arbitraria de archivos del servidor mediante LOAD DATA LOCAL INFILE, cuentas con comodines de host ('user'@'%') y tráfico de consultas sin cifrar.",
+        mitigation: "Bloqueo de local_infile y enlaces simbólicos en my.cnf, usuarios restringidos por IP y TLS obligatorio (REQUIRE SSL), cifrado de tablas InnoDB y segregación estricta de privilegios.",
+        code: `# /etc/mysql/mysql.conf.d/mysqld.cnf (Hardening MySQL)
+[mysqld]
+bind-address = 10.20.30.15
+local_infile = 0
+symbolic-links = 0
+require_secure_transport = ON
+default_authentication_plugin = caching_sha2_password
+
+-- Creación de usuario de aplicación con principio de mínimo privilegio y TLS obligatorio
+CREATE USER 'app_service'@'10.20.30.%' IDENTIFIED WITH caching_sha2_password BY 'S3cur3_P@ssw0rd_2026!' REQUIRE SSL;
+GRANT SELECT, INSERT, UPDATE ON prod_app.* TO 'app_service'@'10.20.30.%';
+FLUSH PRIVILEGES;`,
+        tools: ["MySQL 8", "my.cnf Hardening", "caching_sha2_password", "InnoDB Encryption", "TLS/SSL", "RBAC"]
+      },
+      {
+        id: 5,
         title: "Laboratorio Local de Inyección SQL y Mitigación (Secure by Design)",
         category: "appsec",
         badge: "APPSEC & OWASP LAB",
@@ -968,14 +1112,14 @@ if ($user && password_verify($inputPassword, $user['password_hash'])) {
         tools: ["PHP 8", "MySQL", "PDO", "Burp Suite", "OWASP ZAP", "Docker"]
       },
       {
-        id: 2,
-        title: "Auditoría de Seguridad y Hardening de Servidores Linux & Bases de Datos",
+        id: 6,
+        title: "Auditoría de Seguridad y Hardening de Servidores Linux & SSH",
         category: "hardening",
         badge: "INFRASTRUCTURE HARDENING",
         badgeColor: "text-cyber-cyan bg-cyber-cyan/10 border-cyber-cyan/30",
-        summary: "Bastionado integral de servidores Linux y motores SQL Server / MySQL con control de acceso granular, políticas de cifrado y automatización de respaldos verificados.",
-        risk: "Exposición de puertos administrativos por defecto, acceso root vía SSH con contraseña, permisos excesivos en bases de datos y ausencia de trazabilidad.",
-        mitigation: "Deshabilitación de login root SSH, autenticación por llaves Ed25519, Fail2Ban, cifrado de backups con GPG y auditoría periódica de logs.",
+        summary: "Bastionado integral de servidores GNU/Linux con control de acceso granular, autenticación criptográfica Ed25519, prevención de intrusiones y automatización de respaldos cifrados.",
+        risk: "Exposición de puertos administrativos por defecto, acceso root vía SSH con contraseña y ausencia de verificación de integridad en copias de seguridad.",
+        mitigation: "Deshabilitación de login root SSH, autenticación por llaves Ed25519, Fail2Ban, cifrado de backups con GPG y verificación de hashes SHA-256.",
         code: `# /etc/ssh/sshd_config - Configuración Bastionada
 Port 2222
 PermitRootLogin no
@@ -985,11 +1129,11 @@ MaxAuthTries 3
 AllowUsers secadmin@10.0.10.0/24
 
 # Backup cifrado automatizado con verificación SHA-256
-mysqldump --single-transaction prod_db | gzip | gpg --encrypt -r "sec@lab" > backup_$(date +%F).sql.gz.gpg`,
-        tools: ["Debian/Ubuntu", "SQL Server", "MySQL", "SSH Hardening", "Fail2Ban", "Bash"]
+pg_dump prod_db | gzip | gpg --encrypt -r "renato9420@gmail.com" > backup_$(date +%F).sql.gz.gpg`,
+        tools: ["Debian/Ubuntu", "SSH Hardening", "Fail2Ban", "GPG", "Bash"]
       },
       {
-        id: 3,
+        id: 7,
         title: "Análisis de Tráfico de Red y Detección de Anomalías",
         category: "blueteam",
         badge: "BLUE TEAM & NETWORKING",
@@ -1007,70 +1151,48 @@ ufw allow from 192.168.10.0/24 to any port 2222 proto tcp`,
         tools: ["Wireshark", "Nmap", "iptables / UFW", "tcpdump", "Kali Linux"]
       },
       {
-        id: 4,
+        id: 8,
         title: "Plataforma de Gestión Académica y Control de Integridad de Datos",
         category: "appsec",
         badge: "SECURE ARCHITECTURE",
         badgeColor: "text-amber-400 bg-amber-400/10 border-amber-400/30",
         summary: "Sistema web desarrollado bajo principios de seguridad desde el diseño para proteger expedientes académicos, calificaciones y registros administrativos.",
         risk: "Manipulación no autorizada de registros (IDOR), elevación de privilegios horizontal y alteración silenciosa de calificaciones históricas.",
-        mitigation: "Control de acceso basado en roles (RBAC), bitácora de auditoría inmutable con hashes de integridad y tokens anti-CSRF en cada transacción.",
+        mitigation: "Control de acceso basado en roles (RBAC), bitácora de auditoría inmutable con hashes de integridad HMAC-SHA256 y tokens anti-CSRF.",
         code: `// Generación de huella de integridad para registro académico crítico
 $payload = implode('|', [$studentId, $courseCode, $grade, $timestamp, $auditorId]);
 $integrityHash = hash_hmac('sha256', $payload, $_ENV['AUDIT_SECRET_KEY']);
 
-// Verificación previa a emisión de certificado
 if (!hash_equals($storedHash, $integrityHash)) {
     logSecurityAlert('INTEGRITY_VIOLATION', $studentId);
     throw new SecurityException('Alteración detectada en el registro.');
 }`,
-        tools: ["Arquitectura RBAC", "HMAC-SHA256", "MySQL", "CSRF Protection", "Audit Logs"]
+        tools: ["Arquitectura RBAC", "HMAC-SHA256", "SQL Security", "CSRF Protection", "Audit Logs"]
       }
     ];
 
     // ---------------------------------------------------------
-    // 4. UTILIDAD DE NOTIFICACIONES (TOAST SIN ALERT)
-    // ---------------------------------------------------------
-    function showToast(message, type = 'mint') {
-      const container = document.getElementById('toast-container');
-      const toast = document.createElement('div');
-      const borderClass = type === 'red' ? 'border-cyber-red text-cyber-red' : 'border-cyber-mint text-cyber-mint';
-      
-      toast.className = `pointer-events-auto px-4 py-3 rounded-xl bg-cyber-card/95 backdrop-blur-md border ${borderClass} shadow-2xl font-mono text-xs flex items-center gap-2.5 transform transition-all duration-300 translate-y-2 opacity-0`;
-      toast.innerHTML = `<i class="fa-solid fa-terminal"></i><span class="text-slate-200">${message}</span>`;
-      
-      container.appendChild(toast);
-      requestAnimationFrame(() => {
-        toast.classList.remove('translate-y-2', 'opacity-0');
-      });
-
-      setTimeout(() => {
-        toast.classList.add('opacity-0', 'translate-y-2');
-        setTimeout(() => toast.remove(), 300);
-      }, 3200);
-    }
-
-    // ---------------------------------------------------------
-    // 5. RENDERIZADO DE HABILIDADES Y PROYECTOS
+    // 4. RENDERIZADO DINÁMICO DE HABILIDADES Y PROYECTOS
     // ---------------------------------------------------------
     function renderSkills(filter = 'all') {
       const grid = document.getElementById('skills-grid');
+      if (!grid) return;
       const filtered = filter === 'all' ? skillsData : skillsData.filter(s => s.category === filter);
 
       grid.innerHTML = filtered.map(skill => `
-        <div class="p-6 rounded-2xl bg-cyber-card border border-cyber-border hover:border-slate-600 transition-all flex flex-col justify-between space-y-4">
+        <div class="p-6 rounded-2xl bg-cyber-card border border-cyber-border hover:border-cyber-mint/40 transition-all flex flex-col justify-between space-y-4">
           <div>
             <div class="flex items-center justify-between gap-2 mb-2">
-              <span class="font-mono text-[11px] uppercase tracking-wider text-slate-400">${skill.catLabel}</span>
-              <span class="font-mono text-xs font-bold text-white">${skill.level}%</span>
+              <span class="text-[11px] font-mono text-slate-400 uppercase tracking-wider">${escapeHTML(skill.catLabel)}</span>
+              <span class="text-xs font-mono font-bold text-cyber-mint">${skill.level}%</span>
             </div>
-            <h3 class="text-base sm:text-lg font-bold text-white">${skill.name}</h3>
-            <div class="w-full h-2 rounded-full bg-slate-800 mt-3 overflow-hidden">
-              <div class="${skill.color} h-full rounded-full transition-all duration-700" style="width: ${skill.level}%"></div>
+            <h3 class="text-lg font-bold text-white mb-3">${escapeHTML(skill.name)}</h3>
+            <div class="w-full h-2 rounded-full bg-slate-800 overflow-hidden mb-4">
+              <div class="${skill.color} h-full rounded-full" style="width: ${skill.level}%"></div>
             </div>
           </div>
-          <div class="flex flex-wrap gap-1.5 pt-1">
-            ${skill.tags.map(tag => `<span class="px-2.5 py-1 rounded-md bg-cyber-bg border border-cyber-border font-mono text-[11px] text-slate-300">${tag}</span>`).join('')}
+          <div class="flex flex-wrap gap-1.5">
+            ${skill.tags.map(tag => `<span class="px-2.5 py-1 rounded-md bg-cyber-bg border border-cyber-border font-mono text-[11px] text-slate-300">${escapeHTML(tag)}</span>`).join('')}
           </div>
         </div>
       `).join('');
@@ -1078,29 +1200,26 @@ if (!hash_equals($storedHash, $integrityHash)) {
 
     function renderProjects(category = 'all') {
       const grid = document.getElementById('projects-grid');
+      if (!grid) return;
       const filtered = category === 'all' ? projectsData : projectsData.filter(p => p.category === category);
 
       grid.innerHTML = filtered.map(proj => `
-        <article class="p-6 sm:p-7 rounded-2xl bg-cyber-card border border-cyber-border hover:border-cyber-mint/40 transition-all flex flex-col justify-between space-y-5 group">
+        <article class="p-6 rounded-2xl bg-cyber-card border border-cyber-border hover:border-cyber-cyan/50 transition-all flex flex-col justify-between space-y-5">
           <div class="space-y-3">
             <div class="flex items-center justify-between gap-2">
-              <span class="font-mono text-[11px] px-2.5 py-1 rounded-md border ${proj.badgeColor}">${proj.badge}</span>
+              <span class="px-2.5 py-1 rounded text-[11px] font-mono font-semibold border ${proj.badgeColor}">${escapeHTML(proj.badge)}</span>
               <span class="font-mono text-xs text-slate-500">LAB-0${proj.id}</span>
             </div>
-            <h3 class="text-xl font-bold text-white group-hover:text-cyber-mint transition-colors">
-              ${proj.title}
-            </h3>
-            <p class="text-sm text-slate-400 leading-relaxed">
-              ${proj.summary}
-            </p>
+            <h3 class="text-xl font-bold text-white leading-snug">${escapeHTML(proj.title)}</h3>
+            <p class="text-sm text-slate-400 leading-relaxed">${escapeHTML(proj.summary)}</p>
           </div>
 
-          <div class="space-y-4 pt-2 border-t border-cyber-border/70">
+          <div class="space-y-4 pt-2">
             <div class="flex flex-wrap gap-1.5">
-              ${proj.tools.map(t => `<span class="px-2 py-0.5 rounded bg-cyber-bg text-slate-300 font-mono text-[11px] border border-cyber-border/80">${t}</span>`).join('')}
+              ${proj.tools.map(t => `<span class="px-2.5 py-1 rounded-md bg-cyber-bg border border-cyber-border font-mono text-[11px] text-cyber-cyan">${escapeHTML(t)}</span>`).join('')}
             </div>
 
-            <button type="button" onclick="openProjectModal(${proj.id})" class="w-full py-2.5 px-4 rounded-xl bg-cyber-bg hover:bg-cyber-mint hover:text-cyber-bg border border-cyber-mint/40 text-cyber-mint font-mono text-xs font-semibold flex items-center justify-center gap-2 transition-all">
+            <button type="button" onclick="openProjectModal(${proj.id})" class="w-full py-3 px-4 rounded-xl bg-cyber-bg hover:bg-slate-800 border border-cyber-border hover:border-cyber-mint/50 text-xs font-mono font-semibold text-cyber-mint flex items-center justify-center gap-2 transition-all">
               <i class="fa-solid fa-code"></i>
               <span>Inspeccionar Arquitectura & Snippet</span>
             </button>
@@ -1109,66 +1228,69 @@ if (!hash_equals($storedHash, $integrityHash)) {
       `).join('');
     }
 
-    // ---------------------------------------------------------
-    // 6. MODAL DE DETALLES DE PROYECTO
-    // ---------------------------------------------------------
-    window.openProjectModal = function(id) {
-      const proj = projectsData.find(p => p.id === id);
-      if (!proj) return;
+    function openProjectModal(projectId) {
+      const proj = projectsData.find(p => p.id === projectId);
+      const modal = document.getElementById('project-modal');
+      if (!proj || !modal) return;
 
-      document.getElementById('modal-proj-badge').textContent = proj.badge;
+      const badgeEl = document.getElementById('modal-proj-badge');
+      badgeEl.className = `inline-block px-2.5 py-1 rounded text-xs font-mono font-semibold border mb-2 ${proj.badgeColor}`;
+      badgeEl.textContent = proj.badge;
+
       document.getElementById('modal-proj-title').textContent = proj.title;
-      document.getElementById('modal-proj-desc').textContent = proj.summary;
+      document.getElementById('modal-proj-summary').textContent = proj.summary;
       document.getElementById('modal-proj-risk').textContent = proj.risk;
       document.getElementById('modal-proj-mitigation').textContent = proj.mitigation;
       document.getElementById('modal-proj-code').textContent = proj.code;
       document.getElementById('modal-proj-tools').innerHTML = proj.tools
-        .map(t => `<span class="px-2.5 py-1 rounded-lg bg-cyber-bg border border-cyber-border font-mono text-xs text-cyber-cyan">${t}</span>`)
+        .map(t => `<span class="px-2.5 py-1 rounded-md bg-cyber-bg border border-cyber-border font-mono text-xs text-slate-300">${escapeHTML(t)}</span>`)
         .join('');
 
-      const modal = document.getElementById('project-modal');
       modal.classList.remove('hidden');
       modal.classList.add('flex');
-    };
+    }
 
     function closeProjectModal() {
       const modal = document.getElementById('project-modal');
+      if (!modal) return;
       modal.classList.add('hidden');
       modal.classList.remove('flex');
     }
 
     // ---------------------------------------------------------
-    // 7. EDITOR DE PERFIL EN VIVO
+    // 7. SECURITY TOOLKIT (WEB CRYPTO API: CSPRNG & SHA-256/512)
     // ---------------------------------------------------------
-    function applyProfileToDOM() {
-      document.getElementById('profile-name').textContent = currentProfile.name;
-      document.getElementById('footer-name').textContent = currentProfile.name;
-      document.getElementById('profile-role').textContent = currentProfile.role;
-      document.getElementById('profile-bio').textContent = currentProfile.bio;
-      
-      document.getElementById('profile-email').textContent = currentProfile.email;
-      document.getElementById('profile-email-link').href = `mailto:${currentProfile.email}`;
-      
-      document.getElementById('profile-phone').textContent = currentProfile.phone;
-      const cleanPhoneHref = currentProfile.phone.replace(/[^0-9+]/g, '');
-      document.getElementById('profile-phone-link').href = `tel:${cleanPhoneHref}`;
-      
-      document.getElementById('profile-location').textContent = currentProfile.location;
-      document.getElementById('link-github').href = currentProfile.github;
-      document.getElementById('link-linkedin').href = currentProfile.linkedin;
+    function generateSecurePassword(length = 20, useSymbols = true) {
+      const lower = 'abcdefghijklmnopqrstuvwxyz';
+      const upper = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+      const nums = '0123456789';
+      const syms = '!@#$%^&*()-_=+[]{}|;:,.<>?';
+      const charset = lower + upper + nums + (useSymbols ? syms : '');
 
-      // Extraer primer nombre limpio para el prompt CLI (ej. renato@sec-lab:~$)
-      const baseName = currentProfile.name
-        .replace(/^ing\.?\s+/i, '')
-        .trim()
-        .split(/\s+/)[0]
-        .toLowerCase()
-        .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
-        .replace(/[^a-z0-9]/g, '') || "renato";
+      const randomValues = new Uint32Array(length);
+      window.crypto.getRandomValues(randomValues);
 
-      currentProfile.promptUser = `${baseName}@sec-lab`;
-      document.getElementById('nav-handle').textContent = currentProfile.handle;
-      document.getElementById('terminal-prompt').textContent = `${currentProfile.promptUser}:~$`;
+      let password = '';
+      for (let i = 0; i < length; i++) {
+        password += charset[randomValues[i] % charset.length];
+      }
+
+      const poolSize = charset.length;
+      const entropyBits = Math.round(length * Math.log2(poolSize));
+      document.getElementById('tk-entropy-badge').textContent = `Entropía: ~${entropyBits} bits`;
+      return password;
+    }
+
+    async function computeWebCryptoHashes(text) {
+      const encoder = new TextEncoder();
+      const data = encoder.encode(text);
+
+      const sha256Buf = await window.crypto.subtle.digest('SHA-256', data);
+      const sha512Buf = await window.crypto.subtle.digest('SHA-512', data);
+
+      const toHex = buf => Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
+      document.getElementById('tk-sha256-out').textContent = toHex(sha256Buf);
+      document.getElementById('tk-sha512-out').textContent = toHex(sha512Buf);
     }
 
     // ---------------------------------------------------------
@@ -1196,11 +1318,31 @@ if (!hash_equals($storedHash, $integrityHash)) {
           response.innerHTML = `
             <div class="text-cyber-cyan font-semibold">Comandos disponibles:</div>
             <div><span class="text-cyber-mint">whoami</span>   — Muestra identidad, especialidad y contacto rápido</div>
-            <div><span class="text-cyber-mint">skills</span>   — Lista matriz de capacidades Red Team, Blue Team & AppSec</div>
+            <div><span class="text-cyber-mint">dbsec</span>    — Controles de seguridad en SQL Server, PostgreSQL, Oracle y MySQL</div>
+            <div><span class="text-cyber-mint">skills</span>   — Lista matriz de capacidades DB Security, Red Team & Blue Team</div>
             <div><span class="text-cyber-mint">projects</span> — Lista los laboratorios y casos de estudio técnicos</div>
             <div><span class="text-cyber-mint">certs</span>    — Muestra certificaciones y ponencias destacadas</div>
             <div><span class="text-cyber-mint">contact</span>  — Muestra teléfono directo, correo electrónico y huella PGP</div>
             <div><span class="text-cyber-mint">clear</span>    — Limpia el historial de la consola</div>
+          `;
+          break;
+
+        case 'dbsec':
+          response.innerHTML = `
+            <div class="text-cyber-mint font-bold">[+] CIBERSEGURIDAD EN GESTORES DE BASES DE DATOS:</div>
+            <div><span class="text-cyber-cyan font-semibold">• Microsoft SQL Server:</span> TDE (AES-256), Dynamic Data Masking, Row-Level Security (RLS), SQL Server Audit y deshabilitación de xp_cmdshell.</div>
+            <div><span class="text-cyber-cyan font-semibold">• PostgreSQL:</span> Autenticación SCRAM-SHA-256 en pg_hba.conf, cifrado TLS/SSL obligatorio, políticas RLS y auditoría forense con pgAudit.</div>
+            <div><span class="text-amber-400 font-semibold">• Oracle Database:</span> Virtual Private Database (VPD), Fine-Grained Auditing (DBMS_FGA), Transparent Data Encryption, Database Vault y hardening TNS Listener.</div>
+            <div><span class="text-cyber-mint font-semibold">• MySQL:</span> Autenticación caching_sha2_password, bloqueo de local_infile, cifrado InnoDB TDE, transporte TLS obligatorio (REQUIRE SSL) y RBAC de mínimo privilegio.</div>
+          `;
+          break;
+
+        case 'dbsec':
+          response.innerHTML = `
+            <div class="text-cyber-mint font-bold">[+] CIBERSEGURIDAD EN GESTORES DE BASES DE DATOS:</div>
+            <div><span class="text-cyber-cyan font-semibold">• Microsoft SQL Server:</span> TDE (AES-256), Dynamic Data Masking, Row-Level Security (RLS), SQL Server Audit y deshabilitación de xp_cmdshell.</div>
+            <div><span class="text-cyber-cyan font-semibold">• PostgreSQL:</span> Autenticación SCRAM-SHA-256 en pg_hba.conf, cifrado TLS/SSL obligatorio, políticas RLS y auditoría forense con pgAudit.</div>
+            <div><span class="text-amber-400 font-semibold">• Oracle Database:</span> Virtual Private Database (VPD), Fine-Grained Auditing (DBMS_FGA), Transparent Data Encryption, Database Vault y hardening TNS Listener.</div>
           `;
           break;
 
@@ -1339,56 +1481,64 @@ if (!hash_equals($storedHash, $integrityHash)) {
       document.getElementById('project-modal').addEventListener('click', (e) => {
         if (e.target.id === 'project-modal') closeProjectModal();
       });
-
-      // Modal Editor Perfil
-      const editorModal = document.getElementById('editor-modal');
-      document.getElementById('btn-open-editor').addEventListener('click', () => {
-        document.getElementById('edit-name').value = currentProfile.name;
-        document.getElementById('edit-role').value = currentProfile.role;
-        document.getElementById('edit-email').value = currentProfile.email;
-        document.getElementById('edit-phone').value = currentProfile.phone;
-        document.getElementById('edit-location').value = currentProfile.location;
-        document.getElementById('edit-github').value = currentProfile.github;
-        document.getElementById('edit-linkedin').value = currentProfile.linkedin;
-        document.getElementById('edit-bio').value = currentProfile.bio;
-        editorModal.classList.remove('hidden');
-        editorModal.classList.add('flex');
+      document.getElementById('modal-copy-code').addEventListener('click', () => {
+        copyTextWithToast(document.getElementById('modal-proj-code').textContent, 'Snippet de código');
       });
 
-      document.getElementById('btn-close-editor').addEventListener('click', () => {
-        editorModal.classList.add('hidden');
-        editorModal.classList.remove('flex');
+      // Modal Security Toolkit
+      const toolkitModal = document.getElementById('toolkit-modal');
+      const passOutput = document.getElementById('tk-pass-output');
+      const passLenSlider = document.getElementById('tk-pass-len');
+      const passSymCheck = document.getElementById('tk-pass-symbols');
+
+      function refreshToolkitPassword() {
+        const len = parseInt(passLenSlider.value, 10);
+        document.getElementById('tk-len-val').textContent = len;
+        passOutput.value = generateSecurePassword(len, passSymCheck.checked);
+      }
+
+      document.getElementById('btn-open-toolkit').addEventListener('click', () => {
+        refreshToolkitPassword();
+        toolkitModal.classList.remove('hidden');
+        toolkitModal.classList.add('flex');
       });
 
-      document.getElementById('editor-form').addEventListener('submit', (e) => {
-        e.preventDefault();
-        currentProfile.name = document.getElementById('edit-name').value.trim() || defaultProfile.name;
-        currentProfile.role = document.getElementById('edit-role').value.trim() || defaultProfile.role;
-        currentProfile.email = document.getElementById('edit-email').value.trim() || defaultProfile.email;
-        currentProfile.phone = document.getElementById('edit-phone').value.trim() || defaultProfile.phone;
-        currentProfile.location = document.getElementById('edit-location').value.trim() || defaultProfile.location;
-        currentProfile.github = document.getElementById('edit-github').value.trim() || defaultProfile.github;
-        currentProfile.linkedin = document.getElementById('edit-linkedin').value.trim() || defaultProfile.linkedin;
-        currentProfile.bio = document.getElementById('edit-bio').value.trim() || defaultProfile.bio;
-
-        applyProfileToDOM();
-        editorModal.classList.add('hidden');
-        editorModal.classList.remove('flex');
-        showToast('Perfil actualizado en tiempo real.');
+      document.getElementById('btn-close-toolkit').addEventListener('click', () => {
+        toolkitModal.classList.add('hidden');
+        toolkitModal.classList.remove('flex');
       });
 
-      document.getElementById('btn-reset-profile').addEventListener('click', () => {
-        currentProfile = { ...defaultProfile };
-        applyProfileToDOM();
-        editorModal.classList.add('hidden');
-        editorModal.classList.remove('flex');
-        showToast('Perfil restaurado a valores predeterminados.');
+      toolkitModal.addEventListener('click', (e) => {
+        if (e.target.id === 'toolkit-modal') {
+          toolkitModal.classList.add('hidden');
+          toolkitModal.classList.remove('flex');
+        }
       });
 
-      // Descargar CV Simulado (genera un archivo de resumen profesional descargable)
+      document.getElementById('tk-btn-regen').addEventListener('click', refreshToolkitPassword);
+      passLenSlider.addEventListener('input', refreshToolkitPassword);
+      passSymCheck.addEventListener('change', refreshToolkitPassword);
+
+      document.getElementById('tk-btn-copy-pass').addEventListener('click', () => {
+        copyTextWithToast(passOutput.value, 'Contraseña CSPRNG');
+      });
+
+      document.getElementById('tk-hash-input').addEventListener('input', (e) => {
+        computeWebCryptoHashes(e.target.value);
+      });
+
+      document.getElementById('tk-copy-sha256').addEventListener('click', () => {
+        copyTextWithToast(document.getElementById('tk-sha256-out').textContent.trim(), 'Hash SHA-256');
+      });
+
+      document.getElementById('tk-copy-sha512').addEventListener('click', () => {
+        copyTextWithToast(document.getElementById('tk-sha512-out').textContent.trim(), 'Hash SHA-512');
+      });
+
+      // Descargar CV Profesional (genera un archivo de resumen profesional descargable)
       document.getElementById('btn-download-cv').addEventListener('click', () => {
         const cvContent = `====================================================================
-CURRICULUM VITAE - CIBERSEGURIDAD & ARQUITECTURA SEGURA
+CURRICULUM VITAE - CIBERSEGURIDAD, BASES DE DATOS & ARQUITECTURA SEGURA
 ====================================================================
 Nombre: ${currentProfile.name}
 Especialidad: ${currentProfile.role}
@@ -1402,8 +1552,13 @@ RESUMEN PROFESIONAL:
 ${currentProfile.bio}
 
 COMPETENCIAS TÉCNICAS:
+- Seguridad en Bases de Datos:
+  * Microsoft SQL Server: TDE, Row-Level Security (RLS), Dynamic Data Masking, SQL Audit, Hardening xp_cmdshell.
+  * PostgreSQL: pg_hba.conf (SCRAM-SHA-256), RLS, TLS/SSL en tránsito, pgAudit.
+  * Oracle Database: Virtual Private Database (VPD), Fine-Grained Auditing (FGA), TDE, Database Vault, TNS Listener.
+  * MySQL: caching_sha2_password, InnoDB TDE, local_infile=0, REQUIRE SSL, privilegios mínimos.
 - Seguridad Ofensiva: OWASP Top 10, Pentesting Web, Nmap, Burp Suite.
-- Blue Team & Hardening: Linux Hardening, Wireshark, Firewalling, MySQL / SQL Server.
+- Blue Team & Hardening: Linux Hardening, Wireshark, Firewalling, Backups cifrados GPG.
 - Desarrollo Seguro: Secure by Design, PDO Prepared Statements, RBAC, HMAC-SHA256.
 ====================================================================`;
 
@@ -1411,7 +1566,7 @@ COMPETENCIAS TÉCNICAS:
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;
-        a.download = `CV_${currentProfile.name.replace(/[^a-zA-Z0-9]/g, '_')}_CyberSec.txt`;
+        a.download = `CV_${currentProfile.name.replace(/[^a-zA-Z0-9]/g, '_')}_CyberSec_DB.txt`;
         document.body.appendChild(a);
         a.click();
         document.body.removeChild(a);
@@ -1427,7 +1582,7 @@ COMPETENCIAS TÉCNICAS:
         tempInput.select();
         try {
           document.execCommand('copy');
-          showToast(`${label} copiado: ${text}`);
+          showToast(`${label} copiado al portapapeles.`);
         } catch (err) {
           showToast('No se pudo copiar automáticamente.', 'red');
         }
@@ -1440,84 +1595,6 @@ COMPETENCIAS TÉCNICAS:
 
       document.getElementById('btn-copy-phone').addEventListener('click', () => {
         copyTextWithToast(currentProfile.phone, 'Teléfono');
-      });
-
-      document.getElementById('btn-close-editor').addEventListener('click', () => {
-        editorModal.classList.add('hidden');
-        editorModal.classList.remove('flex');
-      });
-
-      document.getElementById('editor-form').addEventListener('submit', (e) => {
-        e.preventDefault();
-        currentProfile.name = document.getElementById('edit-name').value.trim() || defaultProfile.name;
-        currentProfile.role = document.getElementById('edit-role').value.trim() || defaultProfile.role;
-        currentProfile.email = document.getElementById('edit-email').value.trim() || defaultProfile.email;
-        currentProfile.location = document.getElementById('edit-location').value.trim() || defaultProfile.location;
-        currentProfile.github = document.getElementById('edit-github').value.trim() || defaultProfile.github;
-        currentProfile.linkedin = document.getElementById('edit-linkedin').value.trim() || defaultProfile.linkedin;
-        currentProfile.bio = document.getElementById('edit-bio').value.trim() || defaultProfile.bio;
-
-        applyProfileToDOM();
-        editorModal.classList.add('hidden');
-        editorModal.classList.remove('flex');
-        showToast('Perfil actualizado en tiempo real.');
-      });
-
-      document.getElementById('btn-reset-profile').addEventListener('click', () => {
-        currentProfile = { ...defaultProfile };
-        applyProfileToDOM();
-        editorModal.classList.add('hidden');
-        editorModal.classList.remove('flex');
-        showToast('Perfil restaurado a valores predeterminados.');
-      });
-
-      // Descargar CV Simulado (genera un archivo de resumen profesional descargable)
-      document.getElementById('btn-download-cv').addEventListener('click', () => {
-        const cvContent = `====================================================================
-CURRICULUM VITAE - CIBERSEGURIDAD & ARQUITECTURA SEGURA
-====================================================================
-Nombre: ${currentProfile.name}
-Especialidad: ${currentProfile.role}
-Email: ${currentProfile.email}
-Ubicación: ${currentProfile.location}
-GitHub: ${currentProfile.github}
-LinkedIn: ${currentProfile.linkedin}
-
-RESUMEN PROFESIONAL:
-${currentProfile.bio}
-
-COMPETENCIAS TÉCNICAS:
-- Seguridad Ofensiva: OWASP Top 10, Pentesting Web, Nmap, Burp Suite.
-- Blue Team & Hardening: Linux Hardening, Wireshark, Firewalling, MySQL / SQL Server.
-- Desarrollo Seguro: Secure by Design, PDO Prepared Statements, RBAC, HMAC-SHA256.
-====================================================================`;
-
-        const blob = new Blob([cvContent], { type: 'text/plain;charset=utf-8' });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = `CV_${currentProfile.name.replace(/\s+/g, '_')}_CyberSec.txt`;
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-        URL.revokeObjectURL(url);
-        showToast('CV descargado correctamente.');
-      });
-
-      // Copiar correo al portapapeles (con fallback execCommand)
-      document.getElementById('btn-copy-email').addEventListener('click', () => {
-        const emailText = currentProfile.email;
-        const tempInput = document.createElement('textarea');
-        tempInput.value = emailText;
-        document.body.appendChild(tempInput);
-        tempInput.select();
-        try {
-          document.execCommand('copy');
-          showToast(`Correo copiado: ${emailText}`);
-        } catch (err) {
-          showToast('No se pudo copiar automáticamente.', 'red');
-        }
-        document.body.removeChild(tempInput);
       });
 
       // Terminal interactiva eventos
