@@ -121,6 +121,7 @@
         <a href="#perfil" class="hover:text-cyber-mint transition-colors">Perfil</a>
         <a href="#habilidades" class="hover:text-cyber-mint transition-colors">Habilidades</a>
         <a href="#proyectos" class="hover:text-cyber-mint transition-colors">Laboratorios/Proyectos</a>
+        <a href="#lenguajes-frameworks" class="hover:text-cyber-mint transition-colors">Lenguajes & Frameworks</a>
         <a href="#trayectoria" class="hover:text-cyber-mint transition-colors">Certificaciones & Academia</a>
         <a href="#terminal-interactiva" class="hover:text-cyber-cyan transition-colors font-mono text-xs px-2.5 py-1 rounded-md bg-cyber-cyan/10 border border-cyber-cyan/30">
           &gt;_ Consola
@@ -147,6 +148,7 @@
       <a href="#perfil" class="mobile-link block px-3 py-2.5 rounded-lg text-sm font-medium text-slate-200 hover:bg-cyber-bg hover:text-cyber-mint">Perfil & Enfoque</a>
       <a href="#habilidades" class="mobile-link block px-3 py-2.5 rounded-lg text-sm font-medium text-slate-200 hover:bg-cyber-bg hover:text-cyber-mint">Habilidades Técnicas</a>
       <a href="#proyectos" class="mobile-link block px-3 py-2.5 rounded-lg text-sm font-medium text-slate-200 hover:bg-cyber-bg hover:text-cyber-mint">Laboratorios & Proyectos</a>
+      <a href="#lenguajes-frameworks" class="mobile-link block px-3 py-2.5 rounded-lg text-sm font-medium text-slate-200 hover:bg-cyber-bg hover:text-cyber-mint">Lenguajes & Frameworks</a>
       <a href="#trayectoria" class="mobile-link block px-3 py-2.5 rounded-lg text-sm font-medium text-slate-200 hover:bg-cyber-bg hover:text-cyber-mint">Certificaciones & Academia</a>
       <a href="#terminal-interactiva" class="mobile-link block px-3 py-2.5 rounded-lg text-sm font-mono text-cyber-cyan hover:bg-cyber-bg">&gt;_ Terminal Interactiva</a>
       <a href="#contacto" class="mobile-link block px-3 py-2.5 rounded-lg text-sm font-medium text-slate-200 hover:bg-cyber-bg hover:text-cyber-mint">Contacto</a>
@@ -448,6 +450,41 @@
     </section>
 
     <!-- =========================================================
+         5.5 SEGURIDAD EN LENGUAJES DE PROGRAMACIÓN & FRAMEWORKS
+    ========================================================== -->
+    <section id="lenguajes-frameworks" class="py-20 border-t border-cyber-border/60 reveal">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+          <div>
+            <span class="font-mono text-xs uppercase tracking-widest text-cyber-mint">03.5 // SECURE CODING & FRAMEWORK HARDENING</span>
+            <h2 class="text-3xl sm:text-4xl font-bold text-white mt-1">Ciberseguridad en Lenguajes & Frameworks</h2>
+            <p class="text-sm text-slate-400 mt-2 max-w-2xl">
+              Auditoría de código fuente (SAST), prevención de vulnerabilidades a nivel de runtime y configuración defensiva en ecosistemas Backend y Frontend.
+            </p>
+          </div>
+
+          <!-- Filtros Lenguajes vs Frameworks -->
+          <div id="stack-filters" class="flex flex-wrap gap-2">
+            <button data-stack="all" class="stack-filter-btn active px-3.5 py-2 rounded-xl text-xs font-mono font-semibold bg-cyber-mint text-cyber-bg transition-all">
+              Todos (12)
+            </button>
+            <button data-stack="language" class="stack-filter-btn px-3.5 py-2 rounded-xl text-xs font-mono font-semibold bg-cyber-card text-slate-300 border border-cyber-border hover:border-cyber-cyan/50 transition-all">
+              Lenguajes (6)
+            </button>
+            <button data-stack="framework" class="stack-filter-btn px-3.5 py-2 rounded-xl text-xs font-mono font-semibold bg-cyber-card text-slate-300 border border-cyber-border hover:border-amber-400/50 transition-all">
+              Frameworks (6)
+            </button>
+          </div>
+        </div>
+
+        <!-- Grid dinámico de Lenguajes y Frameworks -->
+        <div id="stack-security-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          <!-- Renderizado vía JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
          6. TRAYECTORIA, CERTIFICACIONES & PONENCIAS
     ========================================================== -->
     <section id="trayectoria" class="py-20 border-t border-cyber-border/60 reveal">
@@ -587,6 +624,7 @@
           <button type="button" data-cmd="help" class="quick-cmd px-3 py-1.5 rounded-lg bg-cyber-card hover:bg-slate-800 border border-cyber-border text-xs font-mono text-cyber-mint transition-colors">help</button>
           <button type="button" data-cmd="whoami" class="quick-cmd px-3 py-1.5 rounded-lg bg-cyber-card hover:bg-slate-800 border border-cyber-border text-xs font-mono text-slate-200 transition-colors">whoami</button>
           <button type="button" data-cmd="dbsec" class="quick-cmd px-3 py-1.5 rounded-lg bg-cyber-card hover:bg-slate-800 border border-cyber-mint/40 text-xs font-mono text-cyber-mint transition-colors">dbsec</button>
+          <button type="button" data-cmd="appsec" class="quick-cmd px-3 py-1.5 rounded-lg bg-cyber-card hover:bg-slate-800 border border-cyber-cyan/40 text-xs font-mono text-cyber-cyan transition-colors">appsec</button>
           <button type="button" data-cmd="skills" class="quick-cmd px-3 py-1.5 rounded-lg bg-cyber-card hover:bg-slate-800 border border-cyber-border text-xs font-mono text-slate-200 transition-colors">skills</button>
           <button type="button" data-cmd="projects" class="quick-cmd px-3 py-1.5 rounded-lg bg-cyber-card hover:bg-slate-800 border border-cyber-border text-xs font-mono text-slate-200 transition-colors">projects</button>
           <button type="button" data-cmd="certs" class="quick-cmd px-3 py-1.5 rounded-lg bg-cyber-card hover:bg-slate-800 border border-cyber-border text-xs font-mono text-slate-200 transition-colors">certs</button>
@@ -1172,6 +1210,206 @@ if (!hash_equals($storedHash, $integrityHash)) {
     ];
 
     // ---------------------------------------------------------
+    // 3.5 BASE DE DATOS DE SEGURIDAD EN LENGUAJES Y FRAMEWORKS
+    // ---------------------------------------------------------
+    const stackSecurityData = [
+      // LENGUAJES DE PROGRAMACIÓN
+      {
+        id: "lang-python",
+        type: "language",
+        typeLabel: "LENGUAJE DE PROGRAMACIÓN",
+        name: "Python Security",
+        icon: "fa-brands fa-python",
+        accent: "text-cyber-mint border-cyber-mint/30 bg-cyber-mint/10",
+        risk: "Deserialización insegura (pickle/yaml.load), Command Injection en subprocess (shell=True) y Server-Side Template Injection (SSTI).",
+        mitigation: "Uso de yaml.safe_load, subprocess.run con listas sin shell, secretos criptográficos con módulo secrets y análisis estático con Bandit.",
+        code: `# Python Seguro: Evitar Command Injection y Deserialización Insegura
+import subprocess, secrets, yaml
+
+token = secrets.token_urlsafe(32)
+safe_cfg = yaml.safe_load(raw_yaml_input)
+subprocess.run(["nmap", "-sV", target_ip], shell=False, check=True)`,
+        controls: ["Bandit SAST", "secrets CSPRNG", "yaml.safe_load", "subprocess shell=False"]
+      },
+      {
+        id: "lang-js",
+        type: "language",
+        typeLabel: "LENGUAJE DE PROGRAMACIÓN",
+        name: "JavaScript Security",
+        icon: "fa-brands fa-js",
+        accent: "text-amber-400 border-amber-400/30 bg-amber-400/10",
+        risk: "DOM-based XSS por uso de innerHTML/eval, Prototype Pollution (__proto__), exposición de tokens JWT en localStorage y ReDoS.",
+        mitigation: "Manipulación segura con textContent, sanitización DOMPurify, Object.freeze/Map para claves dinámicas y cookies HttpOnly + SameSite=Strict.",
+        code: `// JavaScript Seguro: Prevención de DOM XSS y Prototype Pollution
+const safeStore = new Map();
+safeStore.set(String(userKey), sanitizedValue);
+
+const outputEl = document.getElementById('user-bio');
+outputEl.textContent = untrustedProfileBio; // Nunca innerHTML sin sanitizar`,
+        controls: ["DOMPurify", "CSP Headers", "HttpOnly Cookies", "Anti-Prototype Pollution"]
+      },
+      {
+        id: "lang-ts",
+        type: "language",
+        typeLabel: "LENGUAJE DE PROGRAMACIÓN",
+        name: "TypeScript Security",
+        icon: "fa-solid fa-code",
+        accent: "text-cyber-cyan border-cyber-cyan/30 bg-cyber-cyan/10",
+        risk: "Confianza falsa en tipos en tiempo de ejecución (los tipos desaparecen al transpilar), bypass mediante 'any' y payloads API sin validar.",
+        mitigation: "Modo strict: true, eliminación de 'any' inseguros y validación estricta en runtime mediante esquemas Zod / Valibot en fronteras de red.",
+        code: `// TypeScript + Zod: Validación estricta en tiempo de ejecución
+import { z } from 'zod';
+
+const LoginSchema = z.object({
+  email: z.string().email().max(120),
+  password: z.string().min(12).max(128)
+}).strict();
+
+const parsed = LoginSchema.parse(req.body);`,
+        controls: ["strict: true", "Zod Runtime Validation", "No-Explicit-Any", "Type Guards"]
+      },
+      {
+        id: "lang-php",
+        type: "language",
+        typeLabel: "LENGUAJE DE PROGRAMACIÓN",
+        name: "PHP Security",
+        icon: "fa-brands fa-php",
+        accent: "text-cyber-mint border-cyber-mint/30 bg-cyber-mint/10",
+        risk: "Inyección SQL clásica, Remote/Local File Inclusion (LFI/RFI), deserialización de objetos (unserialize) y subida arbitraria de webshells.",
+        mitigation: "PDO con consultas preparadas reales (EMULATE_PREPARES=false), password_hash(PASSWORD_ARGON2ID), validación MIME real y session_regenerate_id.",
+        code: `// PHP 8+ Seguro: Argon2id y PDO sin emulación de preparadas
+$pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+$hash = password_hash($plainPass, PASSWORD_ARGON2ID);
+
+$stmt = $pdo->prepare('SELECT id, hash FROM usuarios WHERE email = ?');
+$stmt->execute([$email]);`,
+        controls: ["PDO Prepared", "Argon2id", "disable_functions", "Strict MIME Upload"]
+      },
+      {
+        id: "lang-java",
+        type: "language",
+        typeLabel: "LENGUAJE DE PROGRAMACIÓN",
+        name: "Java Security",
+        icon: "fa-brands fa-java",
+        accent: "text-cyber-red border-cyber-red/30 bg-cyber-red/10",
+        risk: "XXE (XML External Entity) en parsers XML, deserialización insegura de ObjectInputStream, JNDI Injection y Path Traversal.",
+        mitigation: "Deshabilitar DOCTYPE/entidades externas en DocumentBuilderFactory, PreparedStatement en JDBC, validación de rutas canónicas y SpotBugs.",
+        code: `// Java Seguro: Prevención de XXE en DocumentBuilderFactory
+DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+dbf.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
+dbf.setFeature("http://xml.org/sax/features/external-general-entities", false);
+dbf.setXIncludeAware(false);`,
+        controls: ["Anti-XXE", "JDBC PreparedStatement", "Canonical Path Check", "OWASP Dependency-Check"]
+      },
+      {
+        id: "lang-csharp",
+        type: "language",
+        typeLabel: "LENGUAJE DE PROGRAMACIÓN",
+        name: "C# (.NET) Security",
+        icon: "fa-solid fa-hashtag",
+        accent: "text-cyber-cyan border-cyber-cyan/30 bg-cyber-cyan/10",
+        risk: "Deserialización insegura (BinaryFormatter), SQL Injection en consultas dinámicas, exposición de secretos y falta de autorización en endpoints.",
+        mitigation: "Uso exclusivo de System.Text.Json, consultas parametrizadas / EF Core LINQ, Data Protection API, [Authorize] por defecto y AntiForgeryToken.",
+        code: `// C# .NET Seguro: Consultas parametrizadas y System.Text.Json
+using var cmd = new SqlCommand("SELECT Id, Role FROM Users WHERE Email = @Email", conn);
+cmd.Parameters.Add("@Email", SqlDbType.NVarChar, 150).Value = userEmail;
+
+var options = new JsonSerializerOptions { MaxDepth = 32 };`,
+        controls: ["Data Protection API", "System.Text.Json", "EF Core Parameterized", "ASP.NET Identity"]
+      },
+
+      // FRAMEWORKS WEB & API
+      {
+        id: "fw-laravel",
+        type: "framework",
+        typeLabel: "FRAMEWORK BACKEND",
+        name: "Laravel Security",
+        icon: "fa-brands fa-laravel",
+        accent: "text-cyber-red border-cyber-red/30 bg-cyber-red/10",
+        risk: "Mass Assignment en modelos Eloquent, bypass de autorización (IDOR) por falta de Policies, XSS con {!! !!} y APP_DEBUG=true en producción.",
+        mitigation: "Definición estricta de $fillable, Gates & Policies por recurso, middleware VerifyCsrfToken, escape automático {{ }} y RateLimiter en rutas críticas.",
+        code: `// Laravel Seguro: Policy + FormRequest + RateLimiting
+class DocumentPolicy {
+    public function view(User $user, Document $doc): bool {
+        return $user->id === $doc->owner_id || $user->hasRole('auditor');
+    }
+}`,
+        controls: ["Eloquent $fillable", "Gates & Policies", "VerifyCsrfToken", "RateLimiter"]
+      },
+      {
+        id: "fw-react-vue",
+        type: "framework",
+        typeLabel: "FRAMEWORKS FRONTEND",
+        name: "React & Vue.js Security",
+        icon: "fa-brands fa-react",
+        accent: "text-cyber-cyan border-cyber-cyan/30 bg-cyber-cyan/10",
+        risk: "Inyección XSS mediante dangerouslySetInnerHTML (React) o v-html (Vue), inyección de URLs javascript: en href y robo de tokens en storage.",
+        mitigation: "Auto-escape nativo JSX/Mustache, sanitización estricta con DOMPurify antes de renderizar HTML rico, validación de protocolos URL y patrón BFF.",
+        code: `// React / Vue Seguro: Sanitización previa + Validación de URLs
+import DOMPurify from 'dompurify';
+
+const cleanHtml = DOMPurify.sanitize(apiHtml, { ALLOWED_TAGS: ['b', 'i', 'p'] });
+const isSafeUrl = (url) => /^https?:\\/\\//i.test(url);`,
+        controls: ["DOMPurify", "Auto-Escaping", "Safe URL Schemes", "BFF Token Pattern"]
+      },
+      {
+        id: "fw-angular",
+        type: "framework",
+        typeLabel: "FRAMEWORK FRONTEND",
+        name: "Angular Security",
+        icon: "fa-brands fa-angular",
+        accent: "text-cyber-red border-cyber-red/30 bg-cyber-red/10",
+        risk: "Uso indebido de bypassSecurityTrustHtml, exposición de rutas protegidas sin Guards robustos y ataques XSRF en peticiones HttpClient.",
+        mitigation: "DomSanitizer estricto del framework, HttpClientXsrfModule integrado, Route Guards con verificación en backend y compilación AOT estricta.",
+        code: `// Angular Seguro: Protección XSRF y Guards tipados
+export const auditGuard: CanActivateFn = () => {
+  const auth = inject(AuthService);
+  return auth.hasVerifiedClaim('SEC_AUDITOR') || createUrlTreeFromSnapshot;
+};`,
+        controls: ["DomSanitizer", "HttpClient XSRF", "Route Guards", "Strict AOT"]
+      },
+      {
+        id: "fw-fastapi",
+        type: "framework",
+        typeLabel: "FRAMEWORK API (PYTHON)",
+        name: "FastAPI Security",
+        icon: "fa-solid fa-bolt",
+        accent: "text-cyber-mint border-cyber-mint/30 bg-cyber-mint/10",
+        risk: "Broken Object Level Authorization (BOLA/IDOR) en endpoints REST, exposición de /docs en producción, CORS permisivo (*) y JWT sin expiración.",
+        mitigation: "Validación automática con Pydantic v2, dependencias OAuth2/JWT con rotación de llaves, restricción explícita de CORS y desactivación de OpenAPI pública.",
+        code: `# FastAPI Seguro: Pydantic v2 + Dependencia de Autorización
+from fastapi import FastAPI, Depends, HTTPException
+
+app = FastAPI(docs_url=None, redoc_url=None) # Ocultar Swagger en Prod
+
+def require_auditor(user = Depends(get_current_verified_user)):
+    if "auditor" not in user.scopes:
+        raise HTTPException(status_code=403, detail="Acceso denegado")
+    return user`,
+        controls: ["Pydantic v2", "OAuth2 + JWT Scopes", "Strict CORS", "BOLA Prevention"]
+      },
+      {
+        id: "fw-django",
+        type: "framework",
+        typeLabel: "FRAMEWORK FULLSTACK (PYTHON)",
+        name: "Django Security",
+        icon: "fa-solid fa-shield-cat",
+        accent: "text-amber-400 border-amber-400/30 bg-amber-400/10",
+        risk: "Inyección SQL en consultas .raw()/.extra(), Host Header Injection, exposición del panel /admin sin MFA y cookies de sesión sin flag Secure.",
+        mitigation: "Django ORM parametrizado, SecurityMiddleware (HSTS, X-Frame-Options, nosniff), CsrfViewMiddleware, ALLOWED_HOSTS estricto y Argon2PasswordHasher.",
+        code: `# Django settings.py Hardening para Producción
+DEBUG = False
+ALLOWED_HOSTS = ['sec-portal.empresa.com']
+SECURE_SSL_REDIRECT = True
+SESSION_COOKIE_HTTPONLY = True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+SECURE_HSTS_SECONDS = 31536000`,
+        controls: ["Django ORM", "SecurityMiddleware", "HSTS & CSRF", "ALLOWED_HOSTS"]
+      }
+    ];
+
+    // ---------------------------------------------------------
     // 4. RENDERIZADO DINÁMICO DE HABILIDADES Y PROYECTOS
     // ---------------------------------------------------------
     function renderSkills(filter = 'all') {
@@ -1257,6 +1495,65 @@ if (!hash_equals($storedHash, $integrityHash)) {
       modal.classList.remove('flex');
     }
 
+    function renderStackSecurity(filter = 'all') {
+      const grid = document.getElementById('stack-security-grid');
+      if (!grid) return;
+      const filtered = filter === 'all' ? stackSecurityData : stackSecurityData.filter(item => item.type === filter);
+
+      grid.innerHTML = filtered.map(item => `
+        <article class="p-6 rounded-2xl bg-cyber-card border border-cyber-border hover:border-cyber-mint/50 transition-all flex flex-col justify-between space-y-4">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between gap-2">
+              <span class="px-2.5 py-1 rounded text-[10px] font-mono font-semibold border ${item.accent}">
+                ${escapeHTML(item.typeLabel)}
+              </span>
+              <i class="${item.icon} text-lg text-slate-300"></i>
+            </div>
+            <h3 class="text-lg font-bold text-white">${escapeHTML(item.name)}</h3>
+            <p class="text-xs text-slate-400 leading-relaxed">
+              <span class="text-cyber-red font-mono font-semibold">Riesgo:</span> ${escapeHTML(item.risk)}
+            </p>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              <span class="text-cyber-mint font-mono font-semibold">Defensa:</span> ${escapeHTML(item.mitigation)}
+            </p>
+          </div>
+
+          <div class="space-y-3 pt-2">
+            <div class="flex flex-wrap gap-1.5">
+              ${item.controls.map(c => `<span class="px-2 py-0.5 rounded bg-cyber-bg border border-cyber-border font-mono text-[10px] text-cyber-cyan">${escapeHTML(c)}</span>`).join('')}
+            </div>
+
+            <button type="button" onclick="openStackModal('${item.id}')" class="w-full py-2.5 px-3 rounded-xl bg-cyber-bg hover:bg-slate-800 border border-cyber-border hover:border-cyber-cyan/50 text-xs font-mono font-semibold text-cyber-cyan flex items-center justify-center gap-2 transition-all">
+              <i class="fa-solid fa-terminal"></i>
+              <span>Ver Patrón de Código Seguro</span>
+            </button>
+          </div>
+        </article>
+      `).join('');
+    }
+
+    function openStackModal(stackId) {
+      const item = stackSecurityData.find(s => s.id === stackId);
+      const modal = document.getElementById('project-modal');
+      if (!item || !modal) return;
+
+      const badgeEl = document.getElementById('modal-proj-badge');
+      badgeEl.className = `inline-block px-2.5 py-1 rounded text-xs font-mono font-semibold border mb-2 ${item.accent}`;
+      badgeEl.textContent = item.typeLabel;
+
+      document.getElementById('modal-proj-title').textContent = item.name;
+      document.getElementById('modal-proj-summary').textContent = `Estándares de codificación segura, prevención de vulnerabilidades y hardening aplicados en ${item.name}.`;
+      document.getElementById('modal-proj-risk').textContent = item.risk;
+      document.getElementById('modal-proj-mitigation').textContent = item.mitigation;
+      document.getElementById('modal-proj-code').textContent = item.code;
+      document.getElementById('modal-proj-tools').innerHTML = item.controls
+        .map(c => `<span class="px-2.5 py-1 rounded-md bg-cyber-bg border border-cyber-border font-mono text-xs text-slate-300">${escapeHTML(c)}</span>`)
+        .join('');
+
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
     // ---------------------------------------------------------
     // 7. SECURITY TOOLKIT (WEB CRYPTO API: CSPRNG & SHA-256/512)
     // ---------------------------------------------------------
@@ -1319,11 +1616,26 @@ if (!hash_equals($storedHash, $integrityHash)) {
             <div class="text-cyber-cyan font-semibold">Comandos disponibles:</div>
             <div><span class="text-cyber-mint">whoami</span>   — Muestra identidad, especialidad y contacto rápido</div>
             <div><span class="text-cyber-mint">dbsec</span>    — Controles de seguridad en SQL Server, PostgreSQL, Oracle y MySQL</div>
+            <div><span class="text-cyber-mint">appsec</span>   — Seguridad en Lenguajes (Python, JS, TS, PHP, Java, C#) & Frameworks</div>
             <div><span class="text-cyber-mint">skills</span>   — Lista matriz de capacidades DB Security, Red Team & Blue Team</div>
             <div><span class="text-cyber-mint">projects</span> — Lista los laboratorios y casos de estudio técnicos</div>
             <div><span class="text-cyber-mint">certs</span>    — Muestra certificaciones y ponencias destacadas</div>
             <div><span class="text-cyber-mint">contact</span>  — Muestra teléfono directo, correo electrónico y huella PGP</div>
             <div><span class="text-cyber-mint">clear</span>    — Limpia el historial de la consola</div>
+          `;
+          break;
+
+        case 'appsec':
+          response.innerHTML = `
+            <div class="text-cyber-mint font-bold">[+] CIBERSEGURIDAD EN LENGUAJES DE PROGRAMACIÓN:</div>
+            <div><span class="text-cyber-cyan font-semibold">• Python:</span> Prevención de SSTI, yaml.safe_load, subprocess sin shell, CSPRNG (secrets) y Bandit SAST.</div>
+            <div><span class="text-amber-400 font-semibold">• JavaScript & TypeScript:</span> Anti-DOM XSS (DOMPurify), Anti-Prototype Pollution, strict mode y validación en runtime con Zod.</div>
+            <div><span class="text-cyber-cyan font-semibold">• PHP:</span> Consultas preparadas reales PDO, Argon2id, control estricto de subida de archivos y aislamiento de sesiones.</div>
+            <div><span class="text-cyber-red font-semibold">• Java & C#:</span> Mitigación XXE, deserialización segura (System.Text.Json), JDBC/EF parametrizado y Data Protection API.</div>
+            <div class="text-cyber-mint font-bold mt-2">[+] HARDENING DE FRAMEWORKS:</div>
+            <div><span class="text-white font-semibold">• Laravel & Django:</span> Policies/ORM, protección CSRF/HSTS, ALLOWED_HOSTS, RateLimiting y ocultamiento de debug.</div>
+            <div><span class="text-white font-semibold">• FastAPI:</span> Validación Pydantic v2, OAuth2/JWT scopes, prevención BOLA/IDOR y desactivación de Swagger en prod.</div>
+            <div><span class="text-white font-semibold">• React, Vue.js & Angular:</span> Auto-escape, DomSanitizer, HttpClient XSRF, Route Guards y patrón BFF para tokens.</div>
           `;
           break;
 
@@ -1413,6 +1725,7 @@ if (!hash_equals($storedHash, $integrityHash)) {
       // Render inicial
       renderSkills('all');
       renderProjects('all');
+      renderStackSecurity('all');
 
       // Efecto Typewriter en Hero
       const messages = [
@@ -1473,6 +1786,19 @@ if (!hash_equals($storedHash, $integrityHash)) {
           btn.classList.remove('bg-cyber-card', 'text-slate-300', 'border', 'border-cyber-border');
           btn.classList.add('bg-cyber-cyan', 'text-cyber-bg');
           renderProjects(btn.dataset.category);
+        });
+      });
+
+      // Filtros de Lenguajes & Frameworks
+      document.querySelectorAll('.stack-filter-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.stack-filter-btn').forEach(b => {
+            b.classList.remove('bg-cyber-mint', 'text-cyber-bg');
+            b.classList.add('bg-cyber-card', 'text-slate-300', 'border', 'border-cyber-border');
+          });
+          btn.classList.remove('bg-cyber-card', 'text-slate-300', 'border', 'border-cyber-border');
+          btn.classList.add('bg-cyber-mint', 'text-cyber-bg');
+          renderStackSecurity(btn.dataset.stack);
         });
       });
 
@@ -1557,6 +1883,10 @@ COMPETENCIAS TÉCNICAS:
   * PostgreSQL: pg_hba.conf (SCRAM-SHA-256), RLS, TLS/SSL en tránsito, pgAudit.
   * Oracle Database: Virtual Private Database (VPD), Fine-Grained Auditing (FGA), TDE, Database Vault, TNS Listener.
   * MySQL: caching_sha2_password, InnoDB TDE, local_infile=0, REQUIRE SSL, privilegios mínimos.
+- Ciberseguridad en Lenguajes de Programación:
+  * Python, JavaScript, TypeScript, PHP, Java y C# (SAST, prevención XSS/SQLi/XXE, deserialización segura, Argon2id, Zod).
+- Hardening de Frameworks Web & API:
+  * Laravel, React, Vue.js, Angular, FastAPI (Python) y Django (Policies/Guards, CSRF/XSRF, HSTS, Pydantic v2, BOLA prevention).
 - Seguridad Ofensiva: OWASP Top 10, Pentesting Web, Nmap, Burp Suite.
 - Blue Team & Hardening: Linux Hardening, Wireshark, Firewalling, Backups cifrados GPG.
 - Desarrollo Seguro: Secure by Design, PDO Prepared Statements, RBAC, HMAC-SHA256.
